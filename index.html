@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Resume – ₹499 Model | Your Name</title>
+  <meta name="description" content="Personal online resume website – clean, fast, recruiter-friendly. ₹499 GitHub link model by Azhagesan." />
+  <meta name="author" content="Azhagesan" />
+  <meta property="og:title" content="Online Resume – ₹499 Model" />
+  <meta property="og:description" content="Professional resume website – GitHub Pages ready. Mobile-first, elegant UI." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;         /* dark slate */
+      --card: #111827;       /* card surface */
+      --text: #e5e7eb;       /* text light */
+      --muted: #9ca3af;      /* text muted */
+      --brand: #7c3aed;      /* violet */
+      --brand-2: #06b6d4;    /* cyan */
+      --success: #10b981;    /* green */
+      --warn: #f59e0b;       /* amber */
+      --danger: #ef4444;     /* red */
+      --ring: rgba(124,58,237,.35);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius-xl: 20px;
+    }
+
+    /* Light mode palette */
+    html.light {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --ring: rgba(124,58,237,.35);
+      --shadow: 0 12px 32px rgba(2,6,23,.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 100% -10%, rgba(124,58,237,.25), transparent 60%),
+                  radial-gradient(1000px 600px at -10% 0%, rgba(6,182,212,.25), transparent 60%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 1.1rem; border-radius: 999px;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white; font-weight: 600; letter-spacing: .2px; border: 0;
+      box-shadow: 0 6px 18px rgba(124,58,237,.35), 0 4px 14px rgba(6,182,212,.25);
+      cursor: pointer; transition: transform .15s ease, filter .2s ease;
+    }
+    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
+    .btn.ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+    }
+
+    header {
+      position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(120%) blur(8px);
+      background: color-mix(in oklab, var(--bg) 80%, transparent);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding: .9rem 0; }
+    .brand { display:flex; align-items:center; gap:.75rem; font-weight: 800; letter-spacing:.2px; }
+    .brand .logo { width: 42px; height: 42px; border-radius: 12px; display:grid; place-items:center; color:#fff;
+      background: conic-gradient(from 210deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow);
+    }
+    .navlinks { display:flex; gap: 1rem; align-items:center; }
+    .navlinks a { padding:.5rem .8rem; border-radius: 999px; color: var(--muted); font-weight: 600; }
+    .navlinks a.active, .navlinks a:hover { color: var(--text); background: rgba(124,58,237,.12); }
+    .mobile-toggle { display:none; }
+
+    /* Hero */
+    .hero { position:relative; padding: 64px 0 40px; }
+    .hero-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items:center; }
+    .h-eyebrow { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .7rem; font-weight:700; font-size:.82rem; color:#fff;
+      background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; box-shadow: var(--shadow);
+    }
+    .h-title { font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3rem); line-height:1.15; margin:.9rem 0 .6rem; font-weight: 800; }
+    .h-sub { color: var(--muted); font-size: clamp(1rem, .92rem + .4vw, 1.125rem); }
+
+    .badge-pricing { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .75rem; border-radius:999px; background: rgba(16,185,129,.15); color: #d1fae5; font-weight:700; margin-top: .9rem; }
+    .badge-pricing .price { font-size:1rem; background:#10b981; color:#06281b; padding:.1rem .5rem; border-radius:8px; }
+
+    .card {
+      background: color-mix(in oklab, var(--card) 86%, transparent);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card { padding: 1rem; display:grid; gap:.8rem; }
+    .avatar { width: 110px; height:110px; border-radius: 24px; overflow:hidden; border: 3px solid rgba(255,255,255,.12); }
+    .kv { display:grid; grid-template-columns: repeat(3,1fr); gap:.75rem; margin-top:.5rem; }
+    .kv .pill { text-align:center; padding:.55rem .65rem; border-radius:12px; background: rgba(124,58,237,.15); font-weight:700; }
+
+    /* Sections */
+    section { padding: 56px 0; }
+    .section-title { font-size: clamp(1.25rem, 1rem + 1.2vw, 1.8rem); font-weight: 800; margin-bottom: .6rem; }
+    .section-sub { color: var(--muted); margin-bottom: 1.25rem; }
+
+    /* Skills */
+    .skills { display:flex; flex-wrap: wrap; gap:.6rem; }
+    .chip { padding:.5rem .7rem; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--text); font-weight: 600; border:1px solid rgba(255,255,255,.08);} 
+
+    /* Projects */
+    .grid { display:grid; gap: 1rem; }
+    .grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+    .p-card { padding: 1rem; display:grid; gap:.6rem; }
+    .p-card h3 { margin:0; font-size:1.1rem; }
+    .p-meta { color: var(--muted); font-size:.95rem; }
+    .p-actions { display:flex; gap:.6rem; flex-wrap:wrap; }
+    .btn.small { padding:.55rem .8rem; font-weight:700; font-size:.9rem; }
+
+    /* Timeline */
+    .timeline { position:relative; padding-left: 1rem; }
+    .timeline:before { content:""; position:absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), transparent); }
+    .t-item { position:relative; padding-left: 1.5rem; margin-bottom: 1rem; }
+    .t-item:before { content:""; position:absolute; left: 2px; top:.25rem; width: 16px; height: 16px; border-radius:50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px rgba(124,58,237,.2);
+    }
+
+    /* Pricing */
+    .pricing { display:grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+    .price-card { padding: 1.1rem; display:grid; gap:.7rem; }
+    .price { font-size: 2rem; font-weight: 900; }
+    .price small { font-weight:600; color: var(--muted); font-size: .9rem; }
+    .features { display:grid; gap:.4rem; }
+    .features li { list-style:none; display:flex; align-items:center; gap:.5rem; }
+
+    /* Contact */
+    .contact-card { padding: 1.5rem; display:grid; gap:1.2rem; }
+    .contact-actions { display:flex; gap:.6rem; flex-wrap: wrap; }
+    .contact-info { display: grid; gap: 1rem; }
+    .contact-item { display: flex; flex-direction: column; gap: 0.5rem; }
+    .contact-label { font-size: 0.9rem; color: var(--muted); }
+    .contact-value { font-size: 1.4rem; font-weight: 700; }
+    
+    /* Video Section */
+    .video-section { padding: 56px 0; }
+    .video-container { position: relative; padding-top: 56.25%; /* 16:9 Aspect Ratio */ }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 12px; }
+
+    /* Footer */
+    footer { padding: 28px 0 40px; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid.col-3 { grid-template-columns: 1fr; }
+      .grid.col-2 { grid-template-columns: 1fr; }
+      .pricing { grid-template-columns: 1fr; }
+      .navlinks { display:none; }
+      .mobile-toggle { display:flex; align-items:center; gap:.5rem; }
+      .contact-value { font-size: 1.2rem; }
+    }
+
+    /* Fancy animated blobs */
+    .blob { position:absolute; filter: blur(60px); opacity:.55; pointer-events:none; }
+    .blob.violet { background: radial-gradient(closest-side, rgba(124,58,237,.6), transparent 70%); width: 420px; height: 420px; right: -60px; top: -60px; animation: float 12s ease-in-out infinite alternate; }
+    .blob.cyan { background: radial-gradient(closest-side, rgba(6,182,212,.55), transparent 70%); width: 360px; height: 360px; left: -80px; bottom: -80px; animation: float 14s ease-in-out infinite alternate-reverse; }
+    @keyframes float { to { transform: translate3d(0, -14px, 0) scale(1.04); } }
+
+    /* Focus styles */
+    :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="blob violet"></div>
+  <div class="blob cyan"></div>
+
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">⚡</div>
+        <span>YOUR NAME</span>
+      </div>
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#about" class="active">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="mobile-toggle">
+        <button class="btn small ghost" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+      </div>
+    </div>
+    <div id="mobileMenu" class="container" hidden>
+      <div class="card" style="padding:.6rem; margin-bottom:.75rem;">
+        <div style="display:grid; gap:.35rem;">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero container" id="home">
+      <div class="hero-grid">
+        <div>
+          <span class="h-eyebrow">Resume Website · Recruiter Friendly</span>
+          <h1 class="h-title">Hi, I'm <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent;">Your Name</span> —
+            I build with passion and ship with quality.</h1>
+          <p class="h-sub">Clean, mobile‑first resume website. Show your skills, projects, and achievements in seconds. Perfect for HR review – share one link and get noticed.</p>
+          <div class="badge-pricing" aria-label="499 only pricing">
+            <span>Launch Offer</span>
+            <span class="price">₹499</span>
+            <span>GitHub Link Model</span>
+          </div>
+          <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top: 1rem;">
+            <a class="btn" href="#pricing">Order Now</a>
+            <a class="btn ghost" href="#projects">See Projects</a>
+            <button class="btn ghost" id="themeToggle" title="Toggle theme">Toggle Theme</button>
+          </div>
+          <div class="kv">
+            <div class="pill">⚡ Fast</div>
+            <div class="pill">📱 Mobile‑First</div>
+            <div class="pill">🔗 Easy Share</div>
+          </div>
+        </div>
+        <aside class="card hero-card">
+          <div style="display:flex; align-items:center; gap:1rem;">
+            <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Your profile photo"/>
+            <div>
+              <h3 style="margin:0 0 .2rem 0;">Your Name</h3>
+              <div style="color:var(--muted);">Role · City, Country</div>
+              <div style="display:flex; gap:.4rem; margin-top:.35rem;">
+                <a class="chip" href="mailto:you@example.com">you@example.com</a>
+                <button class="chip" id="copyEmail" data-email="you@example.com" title="Copy email">Copy Email</button>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid; gap:.4rem;">
+            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Availability</span><strong style="color:#d1fae5;">Immediate</strong></div>
+            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Experience</span><strong>0–2 yrs</strong></div>
+            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Location</span><strong>Chennai, IN</strong></div>
+          </div>
+          <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
+            <a class="btn small" href="https://wa.me/919000000000?text=Hi%20I%20need%20a%20Resume%20Website%20for%20499" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="btn small ghost" href="#contact">Contact</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="card" style="padding:1.1rem;">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-sub">Short intro in 2–3 lines. Highlight your focus, strengths and what you're looking for. Example: Passionate web developer focused on building fast, accessible experiences.</p>
+          <div class="skills">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Bootstrap</span>
+            <span class="chip">Git/GitHub</span>
+            <span class="chip">Figma</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-sub">Key technologies and strengths.</p>
+        <div class="grid col-3">
+          <div class="card p-card">
+            <h3>Frontend</h3>
+            <p class="p-meta">HTML, CSS, JS, Responsive UI, Accessibility</p>
+            <div class="skills">
+              <span class="chip">Tailwind</span>
+              <span class="chip">React (Basics)</span>
+              <span class="chip">SEO</span>
+            </div>
+          </div>
+          <div class="card p-card">
+            <h3>Tools</h3>
+            <p class="p-meta">Git, GitHub, VS Code, Figma</p>
+            <div class="skills">
+              <span class="chip">GitHub Pages</span>
+              <span class="chip">Canva</span>
+              <span class="chip">CapCut</span>
+            </div>
+          </div>
+          <div class="card p-card">
+            <h3>Soft Skills</h3>
+            <p class="p-meta">Communication, Problem Solving, Teamwork</p>
+            <div class="skills">
+              <span class="chip">Time Mgmt</span>
+              <span class="chip">Adaptability</span>
+              <span class="chip">Ownership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-sub">A few things I've built or contributed to.</p>
+        <div class="grid col-3">
+          <article class="card p-card">
+            <h3>Portfolio Website</h3>
+            <p class="p-meta">Responsive personal portfolio with smooth scroll and contact links.</p>
+            <div class="p-actions">
+              <a class="btn small" href="#" target="_blank">Live</a>
+              <a class="btn small ghost" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+          <article class="card p-card">
+            <h3>Landing Page</h3>
+            <p class="p-meta">High‑converting landing page with pricing and FAQ.</p>
+            <div class="p-actions">
+              <a class="btn small" href="#" target="_blank">Live</a>
+              <a class="btn small ghost" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+          <article class="card p-card">
+            <h3>UI Components</h3>
+            <p class="p-meta">Reusable cards, buttons, forms with clean styles.</p>
+            <div class="p-actions">
+              <a class="btn small" href="#" target="_blank">Docs</a>
+              <a class="btn small ghost" href="#" target="_blank">Code</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-sub">Internships, freelance, or roles.</p>
+        <div class="card" style="padding:1rem;">
+          <div class="timeline">
+            <div class="t-item">
+              <h3 style="margin:.1rem 0;">Front‑End Intern – Company Name</h3>
+              <div class="p-meta">Jan 2024 – Mar 2024 · Remote</div>
+              <p>Built responsive pages, improved Lighthouse score to 95+, collaborated using Git.</p>
+            </div>
+            <div class="t-item">
+              <h3 style="margin:.1rem 0;">Freelance – Small Business Site</h3>
+              <div class="p-meta">2023 · Chennai</div>
+              <p>Shipped a static site on GitHub Pages; added WhatsApp CTA and basic SEO.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="grid col-2">
+          <div class="card p-card">
+            <h3>B.Sc / B.E – Your Major</h3>
+            <p class="p-meta">College Name · 2020–2024</p>
+            <p>CGPA / Percentage, key coursework, achievements.</p>
+          </div>
+          <div class="card p-card">
+            <h3>Certifications</h3>
+            <p class="p-meta">Course / Platform · Year</p>
+            <p>Front‑end basics, Git & GitHub, UI/UX fundamentals, etc.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO SECTION -->
+    <section class="video-section" id="video">
+      <div class="container">
+        <h2 class="section-title">Business Video</h2>
+        <p class="section-sub">Watch this short video to learn more about our services</p>
+        <div class="card" style="padding: 1.5rem;">
+          <div class="video-container">
+            <!-- Replace with your actual YouTube video embed code -->
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="section-title">Packages</h2>
+        <p class="section-sub">Choose what fits your goal. Special launch offer below.</p>
+        <div class="pricing">
+          <div class="card price-card">
+            <h3>Basic – GitHub Link</h3>
+            <div class="price">₹499 <small>one‑time</small></div>
+            <ul class="features">
+              <li>✔️ Single‑page resume website</li>
+              <li>✔️ Mobile‑first, fast loading</li>
+              <li>✔️ GitHub Pages deployment</li>
+              <li>✔️ 1 round text updates</li>
+            </ul>
+            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Basic%20GitHub%20Link%20plan%20for%20499" target="_blank">Order Basic</a>
+          </div>
+          <div class="card price-card" style="outline:2px solid var(--brand);">
+            <h3>Standard – Domain + Hosting</h3>
+            <div class="price">₹1499 <small>first year*</small></div>
+            <ul class="features">
+              <li>✔️ Everything in Basic</li>
+              <li>✔️ Custom domain setup</li>
+              <li>✔️ Contact links & SEO tags</li>
+              <li>✔️ 2 rounds updates</li>
+            </ul>
+            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Standard%20Domain%20%2B%20Hosting%20plan" target="_blank">Order Standard</a>
+          </div>
+          <div class="card price-card">
+            <h3>Premium – Portfolio+</h3>
+            <div class="price">₹2999 <small>one‑time</small></div>
+            <ul class="features">
+              <li>✔️ Multi‑section portfolio</li>
+              <li>✔️ 3 projects, certificates</li>
+              <li>✔️ WhatsApp CTA setup</li>
+              <li>✔️ 3 rounds updates</li>
+            </ul>
+            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Premium%20Portfolio%20plan" target="_blank">Order Premium</a>
+          </div>
+        </div>
+        <p class="section-sub" style="margin-top:.8rem;">*Domain renewals extra per provider pricing.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="card contact-card">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-sub">Reach out for opportunities, collaborations, or to order your resume website.</p>
+          
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-label">Phone Number</span>
+              <span class="contact-value">+91 8903108605</span>
+            </div>
+            
+            <div class="contact-item">
+              <span class="contact-label">Email Address</span>
+              <span class="contact-value">Villagenetworld20@gmail.com</span>
+            </div>
+          </div>
+          
+          <div class="contact-actions">
+            <a class="btn" href="mailto:Villagenetworld20@gmail.com?subject=Resume%20Website%20Enquiry&body=Hi%2C%20I%20am%20interested%20in%20the%20%E2%82%B9499%20GitHub%20link%20model." target="_blank">Email Me</a>
+            <a class="btn ghost" href="https://wa.me/918903108605?text=Hi%2C%20I%20need%20a%20Resume%20Website%20for%20499" target="_blank" rel="noopener">WhatsApp</a>
+            <button class="btn ghost" id="copyLink">Copy Site Link</button>
+          </div>
+          <div style="font-size:.95rem; color:var(--muted);">Prefer Tamil? ✅ Voice‑over & caption support available.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem;">
+      <div>© <span id="year"></span> Your Name. All rights reserved.</div>
+      <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
+        <a class="chip" href="#" target="_blank" aria-label="GitHub">GitHub</a>
+        <a class="chip" href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
+        <a class="chip" href="#" target="_blank" aria-label="Instagram">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const targetId = a.getAttribute('href');
+        if (targetId.length > 1) {
+          e.preventDefault();
+          document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn && mobileMenu) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = !mobileMenu.hasAttribute('hidden');
+        if (isOpen) mobileMenu.setAttribute('hidden', ''); else mobileMenu.removeAttribute('hidden');
+        menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    }
+
+    // Theme toggle (light/dark)
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light');
+        localStorage.setItem('pref-theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+      });
+      const saved = localStorage.getItem('pref-theme');
+      if (saved === 'light') document.documentElement.classList.add('light');
+    }
+
+    // Copy email
+    const copyEmail = document.getElementById('copyEmail');
+    copyEmail?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyEmail.dataset.email);
+        copyEmail.textContent = 'Copied!';
+        setTimeout(() => (copyEmail.textContent = 'Copy Email'), 1500);
+      } catch {}
+    });
+
+    // Copy link
+    document.getElementById('copyLink')?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(location.href);
+        alert('Page link copied!');
+      } catch {}
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
