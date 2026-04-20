@@ -1,538 +1,951 @@
 <!DOCTYPE html>
-<html lang="ta">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Online Resume – ₹499 Model | Your Name</title>
-  <meta name="description" content="Personal online resume website – clean, fast, recruiter-friendly. ₹499 GitHub link model by Azhagesan." />
-  <meta name="author" content="Azhagesan" />
-  <meta property="og:title" content="Online Resume – ₹499 Model" />
-  <meta property="og:description" content="Professional resume website – GitHub Pages ready. Mobile-first, elegant UI." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#111827" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0b0f19;         /* dark slate */
-      --card: #111827;       /* card surface */
-      --text: #e5e7eb;       /* text light */
-      --muted: #9ca3af;      /* text muted */
-      --brand: #7c3aed;      /* violet */
-      --brand-2: #06b6d4;    /* cyan */
-      --success: #10b981;    /* green */
-      --warn: #f59e0b;       /* amber */
-      --danger: #ef4444;     /* red */
-      --ring: rgba(124,58,237,.35);
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius-xl: 20px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Azhagu Hotel – Digital Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* Light mode palette */
-    html.light {
-      --bg: #f8fafc;
-      --card: #ffffff;
-      --text: #0f172a;
-      --muted: #475569;
-      --ring: rgba(124,58,237,.35);
-      --shadow: 0 12px 32px rgba(2,6,23,.08);
-    }
+:root {
+  --azh-primary: #b7410e;
+  --azh-deep: #8b2c0d;
+  --azh-gold: #e6b422;
+  --azh-cream: #fff9ef;
+  --azh-green: #2a7f49;
+  --azh-dark: #2c1a0f;
+  --azh-card: #ffffff;
+  --azh-border: #f0e2cf;
+  --azh-text: #2b1e12;
+  --azh-muted: #9b7b5c;
+  --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+}
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
-      color: var(--text);
-      background: radial-gradient(1200px 600px at 100% -10%, rgba(124,58,237,.25), transparent 60%),
-                  radial-gradient(1000px 600px at -10% 0%, rgba(6,182,212,.25), transparent 60%),
-                  var(--bg);
-      line-height: 1.6;
-    }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--azh-cream);
+  color: var(--azh-text);
+}
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+/* Navigation */
+.app-nav {
+  display: flex;
+  background: var(--azh-dark);
+  padding: 0 20px;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+.nt {
+  padding: 15px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 248, 235, 0.7);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+.nt.active {
+  color: var(--azh-gold);
+  border-bottom-color: var(--azh-gold);
+}
 
-    .container { width: min(1120px, 92%); margin: 0 auto; }
-    .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .85rem 1.1rem; border-radius: 999px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      color: white; font-weight: 600; letter-spacing: .2px; border: 0;
-      box-shadow: 0 6px 18px rgba(124,58,237,.35), 0 4px 14px rgba(6,182,212,.25);
-      cursor: pointer; transition: transform .15s ease, filter .2s ease;
-    }
-    .btn:hover { transform: translateY(-1px); filter: brightness(1.05); }
-    .btn.ghost {
-      background: transparent; color: var(--text);
-      border: 1px solid rgba(255,255,255,.18);
-      backdrop-filter: blur(8px);
-    }
+.view {
+  display: none;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.view.active {
+  display: flex;
+}
 
-    header {
-      position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(120%) blur(8px);
-      background: color-mix(in oklab, var(--bg) 80%, transparent);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-    .nav { display:flex; align-items:center; justify-content:space-between; padding: .9rem 0; }
-    .brand { display:flex; align-items:center; gap:.75rem; font-weight: 800; letter-spacing:.2px; }
-    .brand .logo { width: 42px; height: 42px; border-radius: 12px; display:grid; place-items:center; color:#fff;
-      background: conic-gradient(from 210deg, var(--brand), var(--brand-2)); box-shadow: var(--shadow);
-    }
-    .navlinks { display:flex; gap: 1rem; align-items:center; }
-    .navlinks a { padding:.5rem .8rem; border-radius: 999px; color: var(--muted); font-weight: 600; }
-    .navlinks a.active, .navlinks a:hover { color: var(--text); background: rgba(124,58,237,.12); }
-    .mobile-toggle { display:none; }
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--azh-primary) 0%, var(--azh-deep) 100%);
+  padding: 28px 24px 32px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "🍛";
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  font-size: 120px;
+  opacity: 0.12;
+}
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+.logo-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 24px;
+  background: var(--azh-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+}
+.logo-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 800;
+}
+.logo-text p {
+  font-size: 13px;
+  color: rgba(255, 245, 225, 0.85);
+  margin-top: 4px;
+}
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 245, 0.18);
+  backdrop-filter: blur(4px);
+  border-radius: 40px;
+  padding: 6px 16px;
+  font-size: 13px;
+  width: fit-content;
+}
+.ld {
+  width: 8px;
+  height: 8px;
+  background: #a7e0b0;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1);}
+  50% { opacity: 0.5; transform: scale(1.2);}
+}
 
-    /* Hero */
-    .hero { position:relative; padding: 64px 0 40px; }
-    .hero-grid { display:grid; grid-template-columns: 1.1fr .9fr; gap: 2rem; align-items:center; }
-    .h-eyebrow { display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .7rem; font-weight:700; font-size:.82rem; color:#fff;
-      background: linear-gradient(90deg, var(--brand), var(--brand-2)); border-radius: 999px; box-shadow: var(--shadow);
-    }
-    .h-title { font-size: clamp(1.9rem, 1.4rem + 2.2vw, 3rem); line-height:1.15; margin:.9rem 0 .6rem; font-weight: 800; }
-    .h-sub { color: var(--muted); font-size: clamp(1rem, .92rem + .4vw, 1.125rem); }
+/* Filter Bar */
+.fbar {
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px 12px;
+  overflow-x: auto;
+  background: var(--azh-cream);
+  border-bottom: 1px solid var(--azh-border);
+  position: sticky;
+  top: 52px;
+  z-index: 99;
+}
+.fpill {
+  padding: 8px 22px;
+  border-radius: 60px;
+  border: 1.5px solid var(--azh-border);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  background: white;
+  color: var(--azh-muted);
+}
+.fpill.active {
+  background: var(--azh-primary);
+  color: white;
+  border-color: var(--azh-primary);
+}
 
-    .badge-pricing { display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .75rem; border-radius:999px; background: rgba(16,185,129,.15); color: #d1fae5; font-weight:700; margin-top: .9rem; }
-    .badge-pricing .price { font-size:1rem; background:#10b981; color:#06281b; padding:.1rem .5rem; border-radius:8px; }
+/* Menu Grid */
+.mgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 20px;
+  padding: 24px 20px;
+}
+@media (max-width: 520px) {
+  .mgrid { gap: 14px; padding: 18px 16px; grid-template-columns: repeat(2, 1fr);}
+}
+.mc {
+  background: var(--azh-card);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+  border: 1px solid var(--azh-border);
+}
+.mc:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.mi {
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  background: #faeedb;
+  overflow: hidden;
+}
+.mi img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mi .me {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+.mb {
+  padding: 14px 14px 16px;
+  flex: 1;
+}
+.mn {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--azh-dark);
+}
+.mnote {
+  font-size: 11px;
+  color: var(--azh-muted);
+  margin-top: 4px;
+}
+.mrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.mprice {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--azh-primary);
+}
+.qw {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fef6ed;
+  padding: 3px 8px 3px 6px;
+  border-radius: 44px;
+}
+.qb {
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  background: white;
+}
+.qb.plus {
+  background: var(--azh-primary);
+  color: white;
+}
+.qb.minus {
+  border: 1px solid #e2cfb5;
+}
+.qn {
+  font-size: 15px;
+  font-weight: 700;
+  min-width: 20px;
+  text-align: center;
+}
 
-    .card {
-      background: color-mix(in oklab, var(--card) 86%, transparent);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-    }
+/* Cart Bar */
+.cbar {
+  background: var(--azh-dark);
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 150;
+}
+.ct {
+  font-size: 26px;
+  font-weight: 800;
+}
+.pbtn {
+  background: var(--azh-gold);
+  color: var(--azh-dark);
+  border: none;
+  border-radius: 44px;
+  padding: 12px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.pbtn:disabled {
+  background: #9b7b5c;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-    .hero-card { padding: 1rem; display:grid; gap:.8rem; }
-    .avatar { width: 110px; height:110px; border-radius: 24px; overflow:hidden; border: 3px solid rgba(255,255,255,.12); }
-    .kv { display:grid; grid-template-columns: repeat(3,1fr); gap:.75rem; margin-top:.5rem; }
-    .kv .pill { text-align:center; padding:.55rem .65rem; border-radius:12px; background: rgba(124,58,237,.15); font-weight:700; }
+/* Modal */
+.moverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 15, 0.75);
+  z-index: 500;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.moverlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.msheet {
+  background: #fffcf5;
+  border-radius: 32px 32px 0 0;
+  width: 100%;
+  max-width: 520px;
+  transform: translateY(60px);
+  transition: transform 0.35s;
+  max-height: 92vh;
+  overflow-y: auto;
+}
+.moverlay.open .msheet {
+  transform: translateY(0);
+}
+.shandle {
+  width: 48px;
+  height: 5px;
+  background: #e2cfb5;
+  border-radius: 12px;
+  margin: 14px auto 8px;
+}
+.shdr {
+  padding: 18px 22px 12px;
+  border-bottom: 1px solid var(--azh-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--azh-primary);
+}
+.xbtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #f0e4d4;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.osum {
+  padding: 16px 22px;
+  background: #fff7ef;
+}
+.slbl {
+  font-size: 11px;
+  font-weight: 700;
+  color: #b87a4a;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.sline {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 4px 0;
+}
+.strow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 800;
+  padding-top: 12px;
+  margin-top: 8px;
+  border-top: 2px dashed #e2cfb5;
+}
+.pmethods {
+  padding: 16px 22px 12px;
+}
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.popt {
+  border: 2px solid #eedfcb;
+  border-radius: 20px;
+  padding: 12px 6px;
+  cursor: pointer;
+  text-align: center;
+  background: white;
+}
+.popt.selected {
+  border-color: var(--azh-primary);
+  background: #fff1e6;
+}
+.pi {
+  font-size: 28px;
+}
+.pn {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.pcbtn {
+  width: 100%;
+  padding: 14px;
+  background: var(--azh-primary);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.qrsec, .cashsec, .sucsec {
+  padding: 22px;
+  text-align: center;
+}
+.qrbox {
+  background: white;
+  border-radius: 36px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.qrcw {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
+.qra {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--azh-green);
+}
+.urow {
+  background: #f9efe2;
+  border-radius: 60px;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px 0;
+}
+.cpbtn {
+  background: transparent;
+  border: 1.5px solid var(--azh-primary);
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-weight: 600;
+  color: var(--azh-primary);
+  cursor: pointer;
+}
+.camt {
+  font-size: 48px;
+  font-weight: 800;
+  color: var(--azh-green);
+  margin: 16px 0;
+}
+.sucicon {
+  background: #e7f3e3;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  margin: 0 auto 16px;
+}
+.oidbadge {
+  background: var(--azh-gold);
+  padding: 8px 22px;
+  border-radius: 40px;
+  font-weight: 700;
+  display: inline-block;
+  margin: 12px 0;
+}
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2c1a0f;
+  color: #ffecb3;
+  padding: 12px 24px;
+  border-radius: 60px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 999;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
 
-    /* Sections */
-    section { padding: 56px 0; }
-    .section-title { font-size: clamp(1.25rem, 1rem + 1.2vw, 1.8rem); font-weight: 800; margin-bottom: .6rem; }
-    .section-sub { color: var(--muted); margin-bottom: 1.25rem; }
-
-    /* Skills */
-    .skills { display:flex; flex-wrap: wrap; gap:.6rem; }
-    .chip { padding:.5rem .7rem; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--text); font-weight: 600; border:1px solid rgba(255,255,255,.08);} 
-
-    /* Projects */
-    .grid { display:grid; gap: 1rem; }
-    .grid.col-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid.col-2 { grid-template-columns: repeat(2, 1fr); }
-    .p-card { padding: 1rem; display:grid; gap:.6rem; }
-    .p-card h3 { margin:0; font-size:1.1rem; }
-    .p-meta { color: var(--muted); font-size:.95rem; }
-    .p-actions { display:flex; gap:.6rem; flex-wrap:wrap; }
-    .btn.small { padding:.55rem .8rem; font-weight:700; font-size:.9rem; }
-
-    /* Timeline */
-    .timeline { position:relative; padding-left: 1rem; }
-    .timeline:before { content:""; position:absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--brand), transparent); }
-    .t-item { position:relative; padding-left: 1.5rem; margin-bottom: 1rem; }
-    .t-item:before { content:""; position:absolute; left: 2px; top:.25rem; width: 16px; height: 16px; border-radius:50%; background: linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 4px rgba(124,58,237,.2);
-    }
-
-    /* Pricing */
-    .pricing { display:grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
-    .price-card { padding: 1.1rem; display:grid; gap:.7rem; }
-    .price { font-size: 2rem; font-weight: 900; }
-    .price small { font-weight:600; color: var(--muted); font-size: .9rem; }
-    .features { display:grid; gap:.4rem; }
-    .features li { list-style:none; display:flex; align-items:center; gap:.5rem; }
-
-    /* Contact */
-    .contact-card { padding: 1.5rem; display:grid; gap:1.2rem; }
-    .contact-actions { display:flex; gap:.6rem; flex-wrap: wrap; }
-    .contact-info { display: grid; gap: 1rem; }
-    .contact-item { display: flex; flex-direction: column; gap: 0.5rem; }
-    .contact-label { font-size: 0.9rem; color: var(--muted); }
-    .contact-value { font-size: 1.4rem; font-weight: 700; }
-    
-
-
-    /* Footer */
-    footer { padding: 28px 0 40px; color: var(--muted); }
-
-    /* Responsive */
-    @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .grid.col-3 { grid-template-columns: 1fr; }
-      .grid.col-2 { grid-template-columns: 1fr; }
-      .pricing { grid-template-columns: 1fr; }
-      .navlinks { display:none; }
-      .mobile-toggle { display:flex; align-items:center; gap:.5rem; }
-      .contact-value { font-size: 1.2rem; }
-    }
-
-    /* Fancy animated blobs */
-    .blob { position:absolute; filter: blur(60px); opacity:.55; pointer-events:none; }
-    .blob.violet { background: radial-gradient(closest-side, rgba(124,58,237,.6), transparent 70%); width: 420px; height: 420px; right: -60px; top: -60px; animation: float 12s ease-in-out infinite alternate; }
-    .blob.cyan { background: radial-gradient(closest-side, rgba(6,182,212,.55), transparent 70%); width: 360px; height: 360px; left: -80px; bottom: -80px; animation: float 14s ease-in-out infinite alternate-reverse; }
-    @keyframes float { to { transform: translate3d(0, -14px, 0) scale(1.04); } }
-
-    /* Focus styles */
-    :focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 10px; }
-  </style>
+/* App Buttons Row */
+.app-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.app-btn.gpay {
+  background: #1a73e8;
+  color: white;
+}
+.app-btn.phonepe {
+  background: #5f259f;
+  color: white;
+}
+.app-btn.paytm {
+  background: #00baf2;
+  color: white;
+}
+.app-btn.whatsapp {
+  background: #25d366;
+  color: white;
+}
+</style>
 </head>
 <body>
-  <div class="blob violet"></div>
-  <div class="blob cyan"></div>
 
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true">⚡</div>
-        <span>YOUR NAME</span>
-      </div>
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#about" class="active">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <div class="mobile-toggle">
-        <button class="btn small ghost" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
-      </div>
+<nav class="app-nav">
+  <div class="nt active" data-view="customer">🍛 Azhagu Menu</div>
+  <div class="nt" data-view="imgtool">🖼️ Images</div>
+</nav>
+
+<!-- CUSTOMER VIEW -->
+<div class="view active" id="view-customer">
+  <div class="hero">
+    <div class="hero-row">
+      <div class="logo-box">✨</div>
+      <div class="logo-text"><h1>Azhagu Hotel</h1><p>Pure Veg · Authentic Taste</p></div>
     </div>
-    <div id="mobileMenu" class="container" hidden>
-      <div class="card" style="padding:.6rem; margin-bottom:.75rem;">
-        <div style="display:grid; gap:.35rem;">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#contact">Contact</a>
+    <div class="live-pill"><div class="ld"></div> Kitchen Open</div>
+  </div>
+  <div class="fbar" id="filterBar">
+    <div class="fpill active" data-cat="all">✨ All Items</div>
+    <div class="fpill" data-cat="tiffin">🍽️ Tiffin</div>
+    <div class="fpill" data-cat="drinks">🥤 Drinks</div>
+  </div>
+  <div class="mgrid" id="menuGrid"></div>
+  <div class="cbar">
+    <div><div class="cl" id="cartLbl">0 items</div><div class="ct" id="cartTotal">₹0</div></div>
+    <button class="pbtn" id="placeBtn" disabled onclick="openPayModal()">Place Order →</button>
+  </div>
+</div>
+
+<!-- IMAGE TOOL VIEW -->
+<div class="view" id="view-imgtool">
+  <div class="ithdr" style="background:#2c1a0f; padding:22px 24px; color:white;">
+    <h2>📸 Dish Images</h2>
+    <p style="font-size:13px;opacity:0.7;">Upload photos — live on menu</p>
+  </div>
+  <div class="ibody" style="padding:20px; display:flex; flex-direction:column; gap:20px;" id="imgBody"></div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="moverlay" id="payModal">
+  <div class="msheet">
+    <div class="shandle"></div>
+    
+    <div id="stepMethod">
+      <div class="shdr"><div class="stitle">✨ Complete Order</div><button class="xbtn" onclick="closeModal()">✕</button></div>
+      <div class="osum"><div class="slbl">Your selection</div><div id="summaryLines"></div><div class="strow"><span>Total</span><span id="summaryTotal">₹0</span></div></div>
+      
+      <!-- DIRECT APP BUTTONS SECTION -->
+      <div class="pmethods">
+        <div class="slbl">📱 Pay via App (Opens Directly)</div>
+        <div class="app-buttons" id="directAppButtons"></div>
+      </div>
+      
+      <div class="pmethods">
+        <div class="slbl">🔽 or Scan QR Code</div>
+        <div class="pgrid">
+          <div class="popt selected" id="opt-upi" onclick="selPay('upi')"><div class="pi">📱</div><div class="pn">UPI/QR</div></div>
+          <div class="popt" id="opt-cash" onclick="selPay('cash')"><div class="pi">💵</div><div class="pn">Cash</div></div>
         </div>
       </div>
+      <div style="padding:0 22px 24px"><button class="pcbtn" onclick="proceedPay()">Proceed →</button></div>
     </div>
-  </header>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero container" id="home">
-      <div class="hero-grid">
+    <div id="stepQR" style="display:none">
+      <div class="shdr"><div class="stitle">Scan & Pay</div><button class="xbtn" onclick="closeModal()">✕</button></div>
+      <div class="qrsec">
+        <div class="qrbox"><div class="qrcw" id="qrWrap"></div><div class="qru" id="qrLabel">UPI Payment</div><div class="qra" id="qrAmt">₹0</div></div>
+        <div class="app-buttons" id="qrAppButtons"></div>
+        <div class="urow"><div class="uid" id="upiIdTxt">azhagu@okhdfcbank</div><button class="cpbtn" onclick="copyUPI()">Copy ID</button></div>
+        <button class="pcbtn paid" style="background:#2a7f49; margin-top:12px;" onclick="confirmPay()">✅ I have paid</button>
+        <button class="backlink" style="margin-top:12px; background:none; border:none; color:#9b7b5c;" onclick="showStep('stepMethod')">← Back</button>
+      </div>
+    </div>
+
+    <div id="stepCash" style="display:none">
+      <div class="shdr"><div class="stitle">💵 Pay at Counter</div><button class="xbtn" onclick="closeModal()">✕</button></div>
+      <div class="cashsec"><div class="camt" id="cashAmt">₹0</div><div class="cnote">Please pay at the front desk.<br>We'll prepare your order immediately.</div>
+      <button class="pcbtn" style="margin:18px 0 8px;" onclick="confirmPay()">✅ Confirm Order</button>
+      <button class="backlink" onclick="showStep('stepMethod')">← Change method</button></div>
+    </div>
+
+    <div id="stepSuccess" style="display:none">
+      <div class="sucsec"><div class="sucicon">✅</div><div class="suctitle" style="font-size:24px;font-weight:800;">Order Placed!</div>
+      <div class="sucsub">Your delicious food is being prepared.<br>Azhagu Hotel thanks you.</div>
+      <div class="oidbadge" id="sucOrderId">ORD-001</div>
+      <div>Payment: <span id="sucPayMethod">UPI</span></div>
+      <button class="donebtn" style="background:#b7410e; color:white; margin-top:20px; padding:12px 28px; border:none; border-radius:40px; cursor:pointer;" onclick="closeModal()">🍽️ Order More</button></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ==================== MENU DATA ====================
+const menuData = [
+  {id:1, name:'Ghee Roast Dosa', price:55, category:'tiffin', note:'crispy + chutney', emoji:'🥞', img:null},
+  {id:2, name:'Mini Idly', price:25, category:'tiffin', note:'10 pcs', emoji:'🍚', img:null},
+  {id:3, name:'Kuzhi Paniyaram', price:40, category:'tiffin', note:'soft & spicy', emoji:'🍘', img:null},
+  {id:4, name:'Podi Pongal', price:50, category:'tiffin', note:'with ghee', emoji:'🍲', img:null},
+  {id:5, name:'Filter Coffee', price:22, category:'drinks', note:'aromatic', emoji:'☕', img:null},
+  {id:6, name:'Badam Milk', price:35, category:'drinks', note:'rich', emoji:'🥛', img:null},
+  {id:7, name:'Elaneer Juice', price:45, category:'drinks', note:'tender coconut', emoji:'🥥', img:null}
+];
+
+// ==================== GLOBAL STATE ====================
+let cart = {};
+let orders = JSON.parse(localStorage.getItem('azhagu_orders') || '[]');
+let orderCounter = orders.length + 1;
+let curFilter = 'all';
+let selPayMethod = 'upi';
+let timerInterval = null;
+
+const UPI_ID = 'azhagu@okhdfcbank';
+const UPI_NAME = 'Azhagu Hotel';
+
+// ==================== SAVE ORDERS TO LOCALSTORAGE ====================
+function saveOrders() {
+  localStorage.setItem('azhagu_orders', JSON.stringify(orders));
+}
+
+// ==================== MENU RENDER ====================
+function renderMenu() {
+  const grid = document.getElementById('menuGrid');
+  const filtered = curFilter === 'all' ? menuData : menuData.filter(i => i.category === curFilter);
+  grid.innerHTML = filtered.map(item => {
+    const qty = cart[item.id] || 0;
+    const imgHtml = item.img ? `<img src="${item.img}" alt="${item.name}">` : `<div class="me">${item.emoji}</div>`;
+    return `<div class="mc"><div class="mi">${imgHtml}</div><div class="mb"><div class="mn">${item.name}</div>${item.note ? `<div class="mnote">${item.note}</div>` : ''}<div class="mrow"><div class="mprice">₹${item.price}</div><div class="qw">${qty > 0 ? `<button class="qb minus" onclick="updCart(${item.id},-1)">−</button><span class="qn">${qty}</span>` : ''}<button class="qb plus" onclick="updCart(${item.id},1)">+</button></div></div></div></div>`;
+  }).join('');
+}
+
+function updCart(id, d) {
+  cart[id] = Math.max(0, (cart[id] || 0) + d);
+  if (!cart[id]) delete cart[id];
+  renderMenu();
+  updateCartBar();
+}
+
+function updateCartBar() {
+  let total = 0, count = 0;
+  for (const [id, qty] of Object.entries(cart)) {
+    const item = menuData.find(i => i.id == id);
+    total += item.price * qty;
+    count += qty;
+  }
+  document.getElementById('cartTotal').innerHTML = '₹' + total;
+  document.getElementById('cartLbl').innerText = count + (count === 1 ? ' item' : ' items');
+  document.getElementById('placeBtn').disabled = count === 0;
+}
+
+function getTotal() {
+  let t = 0;
+  for (const [id, qty] of Object.entries(cart)) {
+    const item = menuData.find(i => i.id == id);
+    t += item.price * qty;
+  }
+  return t;
+}
+
+// ==================== DIRECT APP OPENING (INTENTS) ====================
+function openUPIApp(appName, amount) {
+  const packageName = {
+    gpay: 'com.google.android.apps.nbu.paisa.user',
+    phonepe: 'com.phonepe.app',
+    paytm: 'net.one97.paytm',
+    amazonpay: 'in.amazon.mShop.android.shopping'
+  };
+  
+  const upiIntent = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amount}&cu=INR&tn=AzhaguHotelOrder`;
+  
+  if (appName === 'gpay') {
+    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.gpay};end`;
+    setTimeout(() => { window.location.href = upiIntent; }, 500);
+  } else if (appName === 'phonepe') {
+    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.phonepe};end`;
+    setTimeout(() => { window.location.href = upiIntent; }, 500);
+  } else if (appName === 'paytm') {
+    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.paytm};end`;
+    setTimeout(() => { window.location.href = upiIntent; }, 500);
+  } else {
+    window.location.href = upiIntent;
+  }
+}
+
+function renderDirectAppButtons(containerId, amount) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  
+  container.innerHTML = `
+    <button class="app-btn gpay" onclick="openUPIApp('gpay', ${amount})">
+      <span>🅖</span> Google Pay
+    </button>
+    <button class="app-btn phonepe" onclick="openUPIApp('phonepe', ${amount})">
+      <span>💜</span> PhonePe
+    </button>
+    <button class="app-btn paytm" onclick="openUPIApp('paytm', ${amount})">
+      <span>🎯</span> Paytm
+    </button>
+  `;
+}
+
+// ==================== PAYMENT MODAL ====================
+function openPayModal() {
+  if (!Object.keys(cart).length) return;
+  
+  const total = getTotal();
+  selPayMethod = 'upi';
+  
+  document.querySelectorAll('.popt').forEach(p => p.classList.remove('selected'));
+  document.getElementById('opt-upi').classList.add('selected');
+  
+  const sumDiv = document.getElementById('summaryLines');
+  sumDiv.innerHTML = Object.entries(cart).map(([id, qty]) => {
+    const it = menuData.find(i => i.id == id);
+    return `<div class="sline"><span>${it.name} × ${qty}</span><span>₹${it.price * qty}</span></div>`;
+  }).join('');
+  document.getElementById('summaryTotal').innerHTML = '₹' + total;
+  
+  // Render direct app buttons in stepMethod
+  renderDirectAppButtons('directAppButtons', total);
+  
+  showStep('stepMethod');
+  document.getElementById('payModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('payModal').classList.remove('open');
+  if (timerInterval) clearInterval(timerInterval);
+}
+
+function selPay(m) {
+  selPayMethod = m;
+  document.querySelectorAll('.popt').forEach(p => p.classList.remove('selected'));
+  document.getElementById(`opt-${m}`).classList.add('selected');
+}
+
+function proceedPay() {
+  const total = getTotal();
+  if (selPayMethod === 'cash') {
+    document.getElementById('cashAmt').innerHTML = '₹' + total;
+    showStep('stepCash');
+  } else {
+    document.getElementById('qrLabel').innerHTML = 'UPI QR Code';
+    document.getElementById('qrAmt').innerHTML = '₹' + total;
+    document.getElementById('upiIdTxt').innerHTML = UPI_ID;
+    generateQR(total);
+    renderDirectAppButtons('qrAppButtons', total);
+    startTimer(600);
+    showStep('stepQR');
+  }
+}
+
+function generateQR(amt) {
+  const wrap = document.getElementById('qrWrap');
+  wrap.innerHTML = '';
+  const url = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR`;
+  try {
+    new QRCode(wrap, { text: url, width: 190, height: 190, colorDark: "#b7410e", colorLight: "#ffffff" });
+  } catch(e) {
+    wrap.innerHTML = `<div style="width:180px;height:180px;background:#f5e6d8;border-radius:20px;display:flex;align-items:center;justify-content:center;">🔽 Scan QR</div>`;
+  }
+}
+
+function startTimer(sec) {
+  if (timerInterval) clearInterval(timerInterval);
+  const el = document.getElementById('timerVal');
+  if (!el) return;
+  const fmt = (s) => `${Math.floor(s/60)}`.padStart(2,'0')+':'+`${s%60}`.padStart(2,'0');
+  el.innerText = fmt(sec);
+  timerInterval = setInterval(() => {
+    sec--;
+    if (sec <= 0) {
+      clearInterval(timerInterval);
+      if(document.getElementById('timerVal')) document.getElementById('timerVal').innerText = "00:00";
+    } else {
+      if(document.getElementById('timerVal')) document.getElementById('timerVal').innerText = fmt(sec);
+    }
+  }, 1000);
+}
+
+function copyUPI() {
+  navigator.clipboard.writeText(UPI_ID);
+  showToast('✅ UPI ID copied!');
+}
+
+function confirmPay() {
+  if (timerInterval) clearInterval(timerInterval);
+  const payLabel = selPayMethod === 'cash' ? 'Cash' : 'UPI';
+  const orderId = finalizeOrder(payLabel);
+  document.getElementById('sucOrderId').innerText = orderId;
+  document.getElementById('sucPayMethod').innerText = payLabel;
+  showStep('stepSuccess');
+}
+
+function finalizeOrder(payMethod) {
+  let total = 0, itemsList = [];
+  for (const [id, qty] of Object.entries(cart)) {
+    const item = menuData.find(i => i.id == id);
+    itemsList.push({ name: item.name, qty, price: item.price * qty });
+    total += item.price * qty;
+  }
+  const newOrder = {
+    id: `ORD-${String(orderCounter++).padStart(3,'0')}`,
+    lines: itemsList,
+    total,
+    status: 'pending',
+    payMethod,
+    time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
+    timestamp: Date.now()
+  };
+  orders.unshift(newOrder);
+  saveOrders();
+  cart = {};
+  renderMenu();
+  updateCartBar();
+  showToast(`🎉 Order ${newOrder.id} placed!`);
+  return newOrder.id;
+}
+
+function showStep(id) {
+  ['stepMethod','stepQR','stepCash','stepSuccess'].forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.style.display = s === id ? 'block' : 'none';
+  });
+}
+
+// ==================== IMAGE TOOL ====================
+function renderImgTool() {
+  const body = document.getElementById('imgBody');
+  if (!body) return;
+  body.innerHTML = menuData.map(item => `
+    <div class="ie" style="background:white; border-radius:28px; overflow:hidden; border:1px solid #f0e2cf;">
+      <div class="iehead" style="background:#fff4ea; padding:14px 20px; display:flex; justify-content:space-between;">
+        <span style="font-weight:700;">${item.emoji} ${item.name}</span>
+        <span style="color:#b7410e; font-weight:700;">₹${item.price}</span>
+      </div>
+      <div class="iebody" style="display:flex; gap:16px; padding:18px; flex-wrap:wrap;">
+        <div class="iprev" id="prev-${item.id}" onclick="document.getElementById('fi-${item.id}').click()" style="width:100px; height:100px; border-radius:20px; background:#fcf2e6; border:2px dashed #e2cfb5; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+          ${item.img ? `<img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="font-size:30px;">📷</div>`}
+        </div>
+        <input type="file" accept="image/*" style="display:none" id="fi-${item.id}" onchange="handleImgUp(event,${item.id})">
         <div>
-          <span class="h-eyebrow">Resume Website · Recruiter Friendly</span>
-          <h1 class="h-title">Hi, I'm <span style="background:linear-gradient(90deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent;">Your Name</span> —
-            I build with passion and ship with quality.</h1>
-          <p class="h-sub">Clean, mobile‑first resume website. Show your skills, projects, and achievements in seconds. Perfect for HR review – share one link and get noticed.</p>
-          <div class="badge-pricing" aria-label="499 only pricing">
-            <span>Launch Offer</span>
-            <span class="price">₹499</span>
-            <span>GitHub Link Model</span>
-          </div>
-          <div style="display:flex; gap:.6rem; flex-wrap:wrap; margin-top: 1rem;">
-            <a class="btn" href="#pricing">Order Now</a>
-            <a class="btn ghost" href="#projects">See Projects</a>
-            <button class="btn ghost" id="themeToggle" title="Toggle theme">Toggle Theme</button>
-          </div>
-          <div class="kv">
-            <div class="pill">⚡ Fast</div>
-            <div class="pill">📱 Mobile‑First</div>
-            <div class="pill">🔗 Easy Share</div>
-          </div>
+          <button class="upbtn" onclick="document.getElementById('fi-${item.id}').click()" style="background:#b7410e; color:white; border:none; padding:8px 16px; border-radius:30px; margin-right:8px; cursor:pointer;">Upload</button>
+          <button class="rmbtn" onclick="removeImg(${item.id})" style="background:#f2e0d0; border:none; padding:8px 16px; border-radius:30px; cursor:pointer;">Remove</button>
+          <div style="font-size:11px; margin-top:6px;">${item.img ? '✓ image set' : 'no image'}</div>
         </div>
-        <aside class="card hero-card">
-          <div style="display:flex; align-items:center; gap:1rem;">
-            <img class="avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Your profile photo"/>
-            <div>
-              <h3 style="margin:0 0 .2rem 0;">Your Name</h3>
-              <div style="color:var(--muted);">Role · City, Country</div>
-              <div style="display:flex; gap:.4rem; margin-top:.35rem;">
-                <a class="chip" href="mailto:you@example.com">you@example.com</a>
-                <button class="chip" id="copyEmail" data-email="you@example.com" title="Copy email">Copy Email</button>
-              </div>
-            </div>
-          </div>
-          <div style="display:grid; gap:.4rem;">
-            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Availability</span><strong style="color:#d1fae5;">Immediate</strong></div>
-            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Experience</span><strong>0–2 yrs</strong></div>
-            <div style="display:flex; justify-content:space-between; color:var(--muted);"><span>Location</span><strong>Chennai, IN</strong></div>
-          </div>
-          <div style="display:flex; gap:.5rem; flex-wrap:wrap;">
-            <a class="btn small" href="https://wa.me/919000000000?text=Hi%20I%20need%20a%20Resume%20Website%20for%20499" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="btn small ghost" href="#contact">Contact</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <div class="card" style="padding:1.1rem;">
-          <h2 class="section-title">About Me</h2>
-          <p class="section-sub">Short intro in 2–3 lines. Highlight your focus, strengths and what you're looking for. Example: Passionate web developer focused on building fast, accessible experiences.</p>
-          <div class="skills">
-            <span class="chip">HTML</span>
-            <span class="chip">CSS</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Bootstrap</span>
-            <span class="chip">Git/GitHub</span>
-            <span class="chip">Figma</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <p class="section-sub">Key technologies and strengths.</p>
-        <div class="grid col-3">
-          <div class="card p-card">
-            <h3>Frontend</h3>
-            <p class="p-meta">HTML, CSS, JS, Responsive UI, Accessibility</p>
-            <div class="skills">
-              <span class="chip">Tailwind</span>
-              <span class="chip">React (Basics)</span>
-              <span class="chip">SEO</span>
-            </div>
-          </div>
-          <div class="card p-card">
-            <h3>Tools</h3>
-            <p class="p-meta">Git, GitHub, VS Code, Figma</p>
-            <div class="skills">
-              <span class="chip">GitHub Pages</span>
-              <span class="chip">Canva</span>
-              <span class="chip">CapCut</span>
-            </div>
-          </div>
-          <div class="card p-card">
-            <h3>Soft Skills</h3>
-            <p class="p-meta">Communication, Problem Solving, Teamwork</p>
-            <div class="skills">
-              <span class="chip">Time Mgmt</span>
-              <span class="chip">Adaptability</span>
-              <span class="chip">Ownership</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="container">
-        <h2 class="section-title">Projects</h2>
-        <p class="section-sub">A few things I've built or contributed to.</p>
-        <div class="grid col-3">
-          <article class="card p-card">
-            <h3>Portfolio Website</h3>
-            <p class="p-meta">Responsive personal portfolio with smooth scroll and contact links.</p>
-            <div class="p-actions">
-              <a class="btn small" href="#" target="_blank">Live</a>
-              <a class="btn small ghost" href="#" target="_blank">Code</a>
-            </div>
-          </article>
-          <article class="card p-card">
-            <h3>Landing Page</h3>
-            <p class="p-meta">High‑converting landing page with pricing and FAQ.</p>
-            <div class="p-actions">
-              <a class="btn small" href="#" target="_blank">Live</a>
-              <a class="btn small ghost" href="#" target="_blank">Code</a>
-            </div>
-          </article>
-          <article class="card p-card">
-            <h3>UI Components</h3>
-            <p class="p-meta">Reusable cards, buttons, forms with clean styles.</p>
-            <div class="p-actions">
-              <a class="btn small" href="#" target="_blank">Docs</a>
-              <a class="btn small ghost" href="#" target="_blank">Code</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="container">
-        <h2 class="section-title">Experience</h2>
-        <p class="section-sub">Internships, freelance, or roles.</p>
-        <div class="card" style="padding:1rem;">
-          <div class="timeline">
-            <div class="t-item">
-              <h3 style="margin:.1rem 0;">Front‑End Intern – Company Name</h3>
-              <div class="p-meta">Jan 2024 – Mar 2024 · Remote</div>
-              <p>Built responsive pages, improved Lighthouse score to 95+, collaborated using Git.</p>
-            </div>
-            <div class="t-item">
-              <h3 style="margin:.1rem 0;">Freelance – Small Business Site</h3>
-              <div class="p-meta">2023 · Chennai</div>
-              <p>Shipped a static site on GitHub Pages; added WhatsApp CTA and basic SEO.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education">
-      <div class="container">
-        <h2 class="section-title">Education</h2>
-        <div class="grid col-2">
-          <div class="card p-card">
-            <h3>B.Sc / B.E – Your Major</h3>
-            <p class="p-meta">College Name · 2020–2024</p>
-            <p>CGPA / Percentage, key coursework, achievements.</p>
-          </div>
-          <div class="card p-card">
-            <h3>Certifications</h3>
-            <p class="p-meta">Course / Platform · Year</p>
-            <p>Front‑end basics, Git & GitHub, UI/UX fundamentals, etc.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing">
-      <div class="container">
-        <h2 class="section-title">Packages</h2>
-        <p class="section-sub">Choose what fits your goal. Special launch offer below.</p>
-        <div class="pricing">
-          <div class="card price-card">
-            <h3>Basic – GitHub Link</h3>
-            <div class="price">₹499 <small>one‑time</small></div>
-            <ul class="features">
-              <li>✔️ Single‑page resume website</li>
-              <li>✔️ Mobile‑first, fast loading</li>
-              <li>✔️ GitHub Pages deployment</li>
-              <li>✔️ 1 round text updates</li>
-            </ul>
-            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Basic%20GitHub%20Link%20plan%20for%20499" target="_blank">Order Basic</a>
-          </div>
-          <div class="card price-card" style="outline:2px solid var(--brand);">
-            <h3>Standard – Domain + Hosting</h3>
-            <div class="price">₹1499 <small>first year*</small></div>
-            <ul class="features">
-              <li>✔️ Everything in Basic</li>
-              <li>✔️ Custom domain setup</li>
-              <li>✔️ Contact links & SEO tags</li>
-              <li>✔️ 2 rounds updates</li>
-            </ul>
-            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Standard%20Domain%20%2B%20Hosting%20plan" target="_blank">Order Standard</a>
-          </div>
-          <div class="card price-card">
-            <h3>Premium – Portfolio+</h3>
-            <div class="price">₹2999 <small>one‑time</small></div>
-            <ul class="features">
-              <li>✔️ Multi‑section portfolio</li>
-              <li>✔️ 3 projects, certificates</li>
-              <li>✔️ WhatsApp CTA setup</li>
-              <li>✔️ 3 rounds updates</li>
-            </ul>
-            <a class="btn" href="https://wa.me/919000000000?text=I%20want%20the%20Premium%20Portfolio%20plan" target="_blank">Order Premium</a>
-          </div>
-        </div>
-        <p class="section-sub" style="margin-top:.8rem;">*Domain renewals extra per provider pricing.</p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="card contact-card">
-          <h2 class="section-title">Contact</h2>
-          <p class="section-sub">Reach out for opportunities, collaborations, or to order your resume website.</p>
-          
-          <div class="contact-info">
-            <div class="contact-item">
-              <span class="contact-label">Phone Number</span>
-              <span class="contact-value">+91 8903108605</span>
-            </div>
-            
-            <div class="contact-item">
-              <span class="contact-label">Email Address</span>
-              <span class="contact-value">Villagenetworld20@gmail.com</span>
-            </div>
-          </div>
-          
-          <div class="contact-actions">
-            <a class="btn" href="mailto:Villagenetworld20@gmail.com?subject=Resume%20Website%20Enquiry&body=Hi%2C%20I%20am%20interested%20in%20the%20%E2%82%B9499%20GitHub%20link%20model." target="_blank">Email Me</a>
-            <a class="btn ghost" href="https://wa.me/918903108605?text=Hi%2C%20I%20need%20a%20Resume%20Website%20for%20499" target="_blank" rel="noopener">WhatsApp</a>
-            <button class="btn ghost" id="copyLink">Copy Site Link</button>
-          </div>
-          <div style="font-size:.95rem; color:var(--muted);">Prefer Tamil? ✅ Voice‑over & caption support available.</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:.8rem;">
-      <div>© <span id="year"></span> Your Name. All rights reserved.</div>
-      <div style="display:flex; gap:.6rem; flex-wrap:wrap;">
-        <a class="chip" href="#" target="_blank" aria-label="GitHub">GitHub</a>
-        <a class="chip" href="#" target="_blank" aria-label="LinkedIn">LinkedIn</a>
-        <a class="chip" href="#" target="_blank" aria-label="Instagram">Instagram</a>
       </div>
     </div>
-  </footer>
+  `).join('');
+}
 
-  <script>
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const targetId = a.getAttribute('href');
-        if (targetId.length > 1) {
-          e.preventDefault();
-          document.querySelector(targetId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
+window.handleImgUp = (event, id) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const item = menuData.find(i => i.id === id);
+    item.img = e.target.result;
+    renderImgTool();
+    renderMenu();
+    showToast(`📸 ${item.name} updated!`);
+  };
+  reader.readAsDataURL(file);
+};
 
-    // Mobile menu toggle
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = !mobileMenu.hasAttribute('hidden');
-        if (isOpen) mobileMenu.setAttribute('hidden', ''); else mobileMenu.removeAttribute('hidden');
-        menuBtn.setAttribute('aria-expanded', String(!isOpen));
-      });
-    }
+window.removeImg = (id) => {
+  const item = menuData.find(i => i.id === id);
+  item.img = null;
+  renderImgTool();
+  renderMenu();
+  showToast(`🗑️ ${item.name} image removed`);
+};
 
-    // Theme toggle (light/dark)
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
-        document.documentElement.classList.toggle('light');
-        localStorage.setItem('pref-theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
-      });
-      const saved = localStorage.getItem('pref-theme');
-      if (saved === 'light') document.documentElement.classList.add('light');
-    }
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerText = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
 
-    // Copy email
-    const copyEmail = document.getElementById('copyEmail');
-    copyEmail?.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(copyEmail.dataset.email);
-        copyEmail.textContent = 'Copied!';
-        setTimeout(() => (copyEmail.textContent = 'Copy Email'), 1500);
-      } catch {}
-    });
+// ==================== NAVIGATION ====================
+document.querySelectorAll('.nt').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nt').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`view-${tab.dataset.view}`).classList.add('active');
+    if (tab.dataset.view === 'imgtool') renderImgTool();
+  });
+});
 
-    // Copy link
-    document.getElementById('copyLink')?.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(location.href);
-        alert('Page link copied!');
-      } catch {}
-    });
+document.querySelectorAll('.fpill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('.fpill').forEach(f => f.classList.remove('active'));
+    p.classList.add('active');
+    curFilter = p.dataset.cat;
+    renderMenu();
+  });
+});
 
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+// ==================== INIT ====================
+renderMenu();
+renderImgTool();
+updateCartBar();
+</script>
 </body>
 </html>
