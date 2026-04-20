@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Azhagu Hotel – Digital Menu</title>
+<title>Azhagu Hotel – Premium Digital Menu</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -24,29 +24,32 @@
   --azh-border: #f0e2cf;
   --azh-text: #2b1e12;
   --azh-muted: #9b7b5c;
-  --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+  --shadow-sm: 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.1);
+  --shadow-lg: 0 20px 35px -10px rgba(0,0,0,0.15);
 }
 
 body {
   font-family: 'DM Sans', sans-serif;
   background: var(--azh-cream);
   color: var(--azh-text);
+  overflow-x: hidden;
 }
 
 /* Navigation */
 .app-nav {
   display: flex;
   background: var(--azh-dark);
-  padding: 0 20px;
-  gap: 8px;
+  padding: 0 16px;
+  gap: 4px;
   position: sticky;
   top: 0;
   z-index: 200;
+  flex-wrap: wrap;
 }
 .nt {
-  padding: 15px 20px;
-  font-size: 14px;
+  padding: 14px 18px;
+  font-size: 13px;
   font-weight: 600;
   color: rgba(255, 248, 235, 0.7);
   cursor: pointer;
@@ -70,7 +73,7 @@ body {
 /* Hero Section */
 .hero {
   background: linear-gradient(135deg, var(--azh-primary) 0%, var(--azh-deep) 100%);
-  padding: 28px 24px 32px;
+  padding: 20px 20px 28px;
   color: white;
   position: relative;
   overflow: hidden;
@@ -78,85 +81,116 @@ body {
 .hero::before {
   content: "🍛";
   position: absolute;
-  right: -10px;
-  bottom: -10px;
+  right: -20px;
+  bottom: -20px;
   font-size: 120px;
-  opacity: 0.12;
+  opacity: 0.1;
 }
 .hero-row {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
   position: relative;
   z-index: 2;
 }
 .logo-box {
-  width: 56px;
-  height: 56px;
-  border-radius: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
   background: var(--azh-gold);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
-  box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+  font-size: 28px;
 }
 .logo-text h1 {
   font-family: 'Playfair Display', serif;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 800;
 }
 .logo-text p {
-  font-size: 13px;
-  color: rgba(255, 245, 225, 0.85);
-  margin-top: 4px;
+  font-size: 11px;
+  opacity: 0.8;
+}
+.welcome-name {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
 }
 .live-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 245, 0.18);
-  backdrop-filter: blur(4px);
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
   border-radius: 40px;
-  padding: 6px 16px;
-  font-size: 13px;
+  padding: 5px 12px;
+  font-size: 11px;
   width: fit-content;
 }
 .ld {
-  width: 8px;
-  height: 8px;
-  background: #a7e0b0;
+  width: 7px;
+  height: 7px;
+  background: #4caf50;
   border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1);}
-  50% { opacity: 0.5; transform: scale(1.2);}
+  0%,100%{opacity:1} 50%{opacity:0.4}
+}
+
+/* Search Bar */
+.search-bar {
+  padding: 12px 16px;
+  background: white;
+  border-bottom: 1px solid var(--azh-border);
+}
+.search-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--azh-border);
+  border-radius: 50px;
+  font-size: 14px;
+  font-family: inherit;
+  background: white;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--azh-primary);
 }
 
 /* Filter Bar */
 .fbar {
   display: flex;
-  gap: 12px;
-  padding: 16px 20px 12px;
+  gap: 10px;
+  padding: 12px 16px;
   overflow-x: auto;
-  background: var(--azh-cream);
+  background: white;
   border-bottom: 1px solid var(--azh-border);
   position: sticky;
   top: 52px;
   z-index: 99;
+  scrollbar-width: thin;
+}
+.fbar::-webkit-scrollbar {
+  height: 3px;
 }
 .fpill {
-  padding: 8px 22px;
-  border-radius: 60px;
+  padding: 6px 18px;
+  border-radius: 40px;
   border: 1.5px solid var(--azh-border);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
   background: white;
   color: var(--azh-muted);
+  transition: all 0.2s;
 }
 .fpill.active {
   background: var(--azh-primary);
@@ -167,24 +201,28 @@ body {
 /* Menu Grid */
 .mgrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  gap: 20px;
-  padding: 24px 20px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+  padding: 20px 16px;
+  flex: 1;
 }
-@media (max-width: 520px) {
-  .mgrid { gap: 14px; padding: 18px 16px; grid-template-columns: repeat(2, 1fr);}
+@media (max-width: 480px) {
+  .mgrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
 }
 .mc {
   background: var(--azh-card);
-  border-radius: 28px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
   border: 1px solid var(--azh-border);
+  transition: all 0.25s ease;
+  cursor: pointer;
 }
-.mc:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-md);
+.mc:active {
+  transform: scale(0.98);
 }
 .mi {
   position: relative;
@@ -206,21 +244,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 40px;
 }
 .mb {
-  padding: 14px 14px 16px;
-  flex: 1;
+  padding: 10px 12px 14px;
 }
 .mn {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  color: var(--azh-dark);
 }
 .mnote {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--azh-muted);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 .mrow {
   display: flex;
@@ -229,27 +265,28 @@ body {
   margin-top: 10px;
 }
 .mprice {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--azh-primary);
 }
 .qw {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: #fef6ed;
-  padding: 3px 8px 3px 6px;
-  border-radius: 44px;
+  padding: 2px 6px 2px 4px;
+  border-radius: 40px;
 }
 .qb {
-  width: 30px;
-  height: 30px;
-  border-radius: 40px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
   border: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   background: white;
+  transition: all 0.15s;
 }
 .qb.plus {
   background: var(--azh-primary);
@@ -259,9 +296,9 @@ body {
   border: 1px solid #e2cfb5;
 }
 .qn {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
-  min-width: 20px;
+  min-width: 18px;
   text-align: center;
 }
 
@@ -269,7 +306,7 @@ body {
 .cbar {
   background: var(--azh-dark);
   color: white;
-  padding: 14px 24px;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -278,18 +315,19 @@ body {
   z-index: 150;
 }
 .ct {
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 800;
 }
 .pbtn {
   background: var(--azh-gold);
   color: var(--azh-dark);
   border: none;
-  border-radius: 44px;
-  padding: 12px 28px;
-  font-size: 15px;
+  border-radius: 40px;
+  padding: 10px 24px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .pbtn:disabled {
   background: #9b7b5c;
@@ -297,11 +335,72 @@ body {
   cursor: not-allowed;
 }
 
-/* Modal */
-.moverlay {
+/* Name Modal */
+.name-modal {
   position: fixed;
   inset: 0;
-  background: rgba(44, 26, 15, 0.75);
+  background: rgba(44, 26, 15, 0.9);
+  z-index: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.name-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.name-card {
+  background: white;
+  border-radius: 32px;
+  padding: 32px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+}
+.name-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--azh-primary);
+  margin-bottom: 8px;
+}
+.name-card p {
+  color: var(--azh-muted);
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+.name-input {
+  width: 100%;
+  padding: 14px 18px;
+  border: 2px solid var(--azh-border);
+  border-radius: 60px;
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: inherit;
+  text-align: center;
+}
+.name-input:focus {
+  outline: none;
+  border-color: var(--azh-primary);
+}
+.name-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--azh-primary);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Payment Modal */
+.payment-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(44, 26, 15, 0.85);
   z-index: 500;
   display: flex;
   align-items: flex-end;
@@ -310,180 +409,267 @@ body {
   pointer-events: none;
   transition: opacity 0.3s;
 }
-.moverlay.open {
+.payment-modal.open {
   opacity: 1;
   pointer-events: all;
 }
-.msheet {
+.payment-sheet {
   background: #fffcf5;
-  border-radius: 32px 32px 0 0;
+  border-radius: 28px 28px 0 0;
   width: 100%;
-  max-width: 520px;
+  max-width: 500px;
   transform: translateY(60px);
-  transition: transform 0.35s;
-  max-height: 92vh;
+  transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+  max-height: 90vh;
   overflow-y: auto;
 }
-.moverlay.open .msheet {
+.payment-modal.open .payment-sheet {
   transform: translateY(0);
 }
 .shandle {
-  width: 48px;
-  height: 5px;
+  width: 45px;
+  height: 4px;
   background: #e2cfb5;
-  border-radius: 12px;
-  margin: 14px auto 8px;
+  border-radius: 10px;
+  margin: 12px auto 6px;
 }
-.shdr {
-  padding: 18px 22px 12px;
+.section-header {
+  padding: 14px 20px 10px;
   border-bottom: 1px solid var(--azh-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.stitle {
+.section-title {
   font-family: 'Playfair Display', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--azh-primary);
 }
-.xbtn {
-  width: 34px;
-  height: 34px;
+.close-btn {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #f0e4d4;
   border: none;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 16px;
 }
-.osum {
-  padding: 16px 22px;
+
+/* Order Summary */
+.order-summary {
+  padding: 14px 20px;
   background: #fff7ef;
 }
-.slbl {
-  font-size: 11px;
+.summary-label {
+  font-size: 10px;
   font-weight: 700;
   color: #b87a4a;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
 }
-.sline {
+.summary-item {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: 13px;
   padding: 4px 0;
 }
-.strow {
+.summary-total {
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 800;
-  padding-top: 12px;
+  padding-top: 10px;
   margin-top: 8px;
   border-top: 2px dashed #e2cfb5;
 }
-.pmethods {
-  padding: 16px 22px 12px;
+.customer-info {
+  background: #e8f0ff;
+  border-radius: 16px;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
 }
-.pgrid {
+.customer-info span {
+  font-weight: 700;
+  color: var(--azh-primary);
+}
+
+/* Payment Methods */
+.payment-methods {
+  padding: 14px 20px;
+}
+.methods-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
 }
-.popt {
+.method-btn {
   border: 2px solid #eedfcb;
-  border-radius: 20px;
-  padding: 12px 6px;
+  border-radius: 18px;
+  padding: 12px 5px;
   cursor: pointer;
   text-align: center;
   background: white;
+  transition: all 0.2s;
 }
-.popt.selected {
+.method-btn.selected {
   border-color: var(--azh-primary);
   background: #fff1e6;
 }
-.pi {
-  font-size: 28px;
+.method-icon {
+  font-size: 24px;
 }
-.pn {
-  font-size: 12px;
+.method-name {
+  font-size: 11px;
   font-weight: 600;
   margin-top: 4px;
 }
-.pcbtn {
-  width: 100%;
-  padding: 14px;
-  background: var(--azh-primary);
-  color: white;
-  border: none;
-  border-radius: 60px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.qrsec, .cashsec, .sucsec {
-  padding: 22px;
+
+/* UPI Section */
+.upi-section {
+  padding: 20px;
   text-align: center;
 }
-.qrbox {
+.qr-container {
   background: white;
-  border-radius: 36px;
-  padding: 20px;
-  margin-bottom: 16px;
+  border-radius: 28px;
+  padding: 16px;
+  margin-bottom: 14px;
+  border: 1px solid var(--azh-border);
 }
-.qrcw {
-  width: 200px;
-  height: 200px;
+.qr-wrapper {
+  width: 180px;
+  height: 180px;
   margin: 0 auto;
 }
-.qra {
-  font-size: 28px;
+.upi-amount {
+  font-size: 26px;
   font-weight: 800;
   color: var(--azh-green);
+  margin-top: 8px;
 }
-.urow {
+.upi-id-row {
   background: #f9efe2;
-  border-radius: 60px;
-  padding: 10px 16px;
+  border-radius: 50px;
+  padding: 10px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 12px 0;
+  gap: 8px;
+  flex-wrap: wrap;
 }
-.cpbtn {
+.upi-id {
+  font-weight: 600;
+  font-size: 12px;
+  word-break: break-all;
+}
+.copy-btn {
   background: transparent;
   border: 1.5px solid var(--azh-primary);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 30px;
   font-weight: 600;
   color: var(--azh-primary);
   cursor: pointer;
+  font-size: 11px;
 }
-.camt {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--azh-green);
-  margin: 16px 0;
+.payment-confirm-box {
+  background: #fff8e8;
+  border-radius: 18px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 1px solid #ffe0a3;
 }
-.sucicon {
+.confirm-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.confirm-check input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+.warning-text {
+  font-size: 11px;
+  color: #e67e22;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #ffe0a3;
+}
+.utr-field {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--azh-border);
+  border-radius: 40px;
+  font-size: 12px;
+  margin-top: 10px;
+}
+.confirm-order-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2a7f49;
+  color: white;
+  border: none;
+  border-radius: 60px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.confirm-order-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+.back-link {
+  background: none;
+  border: none;
+  color: #9b7b5c;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* Success Section */
+.success-section {
+  padding: 30px 20px;
+  text-align: center;
+}
+.success-icon {
   background: #e7f3e3;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 48px;
+  font-size: 40px;
   margin: 0 auto 16px;
 }
-.oidbadge {
+.order-badge {
   background: var(--azh-gold);
-  padding: 8px 22px;
+  padding: 6px 18px;
   border-radius: 40px;
   font-weight: 700;
   display: inline-block;
   margin: 12px 0;
 }
+.download-btn {
+  background: #2a7f49;
+  margin-top: 10px;
+}
+.order-more-btn {
+  background: var(--azh-primary);
+  margin-top: 10px;
+}
+
+/* Toast */
 .toast {
   position: fixed;
   bottom: 80px;
@@ -491,61 +677,105 @@ body {
   transform: translateX(-50%);
   background: #2c1a0f;
   color: #ffecb3;
-  padding: 12px 24px;
-  border-radius: 60px;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 12px;
   font-weight: 500;
   opacity: 0;
   transition: opacity 0.2s;
   z-index: 999;
   pointer-events: none;
+  text-align: center;
+  white-space: nowrap;
 }
 .toast.show { opacity: 1; }
+@media (max-width: 480px) {
+  .toast { white-space: normal; max-width: 85%; font-size: 11px; }
+}
 
-/* App Buttons Row */
-.app-buttons {
+/* Order History */
+.order-history-list {
+  padding: 16px;
+}
+.history-item {
+  background: white;
+  border-radius: 20px;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid var(--azh-border);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.history-item:active {
+  transform: scale(0.98);
+}
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.history-id {
+  font-weight: 800;
+  color: var(--azh-primary);
+  font-size: 13px;
+}
+.history-date {
+  font-size: 11px;
+  color: var(--azh-muted);
+}
+.history-customer {
+  font-size: 12px;
+  color: var(--azh-green);
+  margin: 4px 0;
+}
+.history-total {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--azh-green);
+}
+
+/* Image Tool */
+.img-tool-item {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--azh-border);
+  margin-bottom: 15px;
+}
+.img-tool-header {
+  background: #fff4ea;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+}
+.img-tool-body {
   display: flex;
   gap: 12px;
-  margin-top: 16px;
+  padding: 14px;
   flex-wrap: wrap;
-  justify-content: center;
+  align-items: center;
 }
-.app-btn {
-  flex: 1;
-  min-width: 100px;
-  padding: 12px 16px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 14px;
-  cursor: pointer;
-  border: none;
+.img-preview {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  background: #fcf2e6;
+  border: 2px dashed #e2cfb5;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  transition: all 0.2s;
-}
-.app-btn.gpay {
-  background: #1a73e8;
-  color: white;
-}
-.app-btn.phonepe {
-  background: #5f259f;
-  color: white;
-}
-.app-btn.paytm {
-  background: #00baf2;
-  color: white;
-}
-.app-btn.whatsapp {
-  background: #25d366;
-  color: white;
+  cursor: pointer;
 }
 </style>
 </head>
 <body>
 
 <nav class="app-nav">
-  <div class="nt active" data-view="customer">🍛 Azhagu Menu</div>
+  <div class="nt active" data-view="customer">🍛 Menu</div>
+  <div class="nt" data-view="orders">📜 My Orders</div>
   <div class="nt" data-view="imgtool">🖼️ Images</div>
 </nav>
 
@@ -554,80 +784,170 @@ body {
   <div class="hero">
     <div class="hero-row">
       <div class="logo-box">✨</div>
-      <div class="logo-text"><h1>Azhagu Hotel</h1><p>Pure Veg · Authentic Taste</p></div>
+      <div class="logo-text">
+        <h1>Azhagu Hotel</h1>
+        <p>Pure Veg · Authentic Taste</p>
+      </div>
+      <div class="welcome-name" id="welcomeNameBtn" onclick="openNameModal()">👤 Tap to add name</div>
     </div>
-    <div class="live-pill"><div class="ld"></div> Kitchen Open</div>
+    <div class="live-pill"><div class="ld"></div> UPI: azhagumani20-3@okicici</div>
   </div>
+  
+  <div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="🔍 Search for dishes... (dosa, coffee, idly)">
+  </div>
+  
   <div class="fbar" id="filterBar">
-    <div class="fpill active" data-cat="all">✨ All Items</div>
-    <div class="fpill" data-cat="tiffin">🍽️ Tiffin</div>
+    <div class="fpill active" data-cat="all">🍽️ All</div>
+    <div class="fpill" data-cat="tiffin">🥞 Tiffin</div>
     <div class="fpill" data-cat="drinks">🥤 Drinks</div>
+    <div class="fpill" data-cat="rice">🍚 Rice</div>
   </div>
+  
   <div class="mgrid" id="menuGrid"></div>
+  
   <div class="cbar">
     <div><div class="cl" id="cartLbl">0 items</div><div class="ct" id="cartTotal">₹0</div></div>
-    <button class="pbtn" id="placeBtn" disabled onclick="openPayModal()">Place Order →</button>
+    <button class="pbtn" id="placeBtn" disabled onclick="proceedToPayment()">Order →</button>
   </div>
+</div>
+
+<!-- ORDER HISTORY VIEW -->
+<div class="view" id="view-orders">
+  <div class="hero" style="background: linear-gradient(135deg, #2c1a0f, #3f2618);">
+    <div class="hero-row">
+      <div class="logo-box">📜</div>
+      <div class="logo-text"><h1>My Orders</h1><p>View bills & history</p></div>
+    </div>
+  </div>
+  <div id="orderHistoryList" class="order-history-list"></div>
 </div>
 
 <!-- IMAGE TOOL VIEW -->
 <div class="view" id="view-imgtool">
-  <div class="ithdr" style="background:#2c1a0f; padding:22px 24px; color:white;">
-    <h2>📸 Dish Images</h2>
-    <p style="font-size:13px;opacity:0.7;">Upload photos — live on menu</p>
+  <div class="hero" style="background: linear-gradient(135deg, #2c1a0f, #3f2618);">
+    <div class="hero-row">
+      <div class="logo-box">🖼️</div>
+      <div class="logo-text"><h1>Dish Images</h1><p>Upload photos</p></div>
+    </div>
   </div>
-  <div class="ibody" style="padding:20px; display:flex; flex-direction:column; gap:20px;" id="imgBody"></div>
+  <div class="order-history-list" id="imgBody"></div>
+</div>
+
+<!-- NAME MODAL -->
+<div id="nameModal" class="name-modal">
+  <div class="name-card">
+    <h3>👤 Welcome!</h3>
+    <p>Please enter your name to continue</p>
+    <input type="text" id="customerNameInput" class="name-input" placeholder="Enter your name" maxlength="30">
+    <button class="name-btn" onclick="saveCustomerName()">Continue →</button>
+  </div>
 </div>
 
 <!-- PAYMENT MODAL -->
-<div class="moverlay" id="payModal">
-  <div class="msheet">
+<div id="paymentModal" class="payment-modal">
+  <div class="payment-sheet">
     <div class="shandle"></div>
     
+    <!-- Step 1: Summary & Method -->
     <div id="stepMethod">
-      <div class="shdr"><div class="stitle">✨ Complete Order</div><button class="xbtn" onclick="closeModal()">✕</button></div>
-      <div class="osum"><div class="slbl">Your selection</div><div id="summaryLines"></div><div class="strow"><span>Total</span><span id="summaryTotal">₹0</span></div></div>
-      
-      <!-- DIRECT APP BUTTONS SECTION -->
-      <div class="pmethods">
-        <div class="slbl">📱 Pay via App (Opens Directly)</div>
-        <div class="app-buttons" id="directAppButtons"></div>
+      <div class="section-header">
+        <div class="section-title">✨ Your Order</div>
+        <button class="close-btn" onclick="closePaymentModal()">✕</button>
       </div>
-      
-      <div class="pmethods">
-        <div class="slbl">🔽 or Scan QR Code</div>
-        <div class="pgrid">
-          <div class="popt selected" id="opt-upi" onclick="selPay('upi')"><div class="pi">📱</div><div class="pn">UPI/QR</div></div>
-          <div class="popt" id="opt-cash" onclick="selPay('cash')"><div class="pi">💵</div><div class="pn">Cash</div></div>
+      <div class="order-summary">
+        <div class="summary-label">Order Details</div>
+        <div id="summaryLines"></div>
+        <div class="customer-info" id="customerInfo"></div>
+        <div class="summary-item"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+        <div id="gstBreakdown"></div>
+        <div class="summary-total"><span>Total</span><span id="totalAmount">₹0</span></div>
+      </div>
+      <div class="payment-methods">
+        <div class="summary-label">💳 Select Payment</div>
+        <div class="methods-grid">
+          <div class="method-btn selected" data-method="upi" onclick="selectPaymentMethod('upi')">
+            <div class="method-icon">📱</div>
+            <div class="method-name">UPI/QR</div>
+          </div>
+          <div class="method-btn" data-method="cash" onclick="selectPaymentMethod('cash')">
+            <div class="method-icon">💵</div>
+            <div class="method-name">Cash</div>
+          </div>
         </div>
       </div>
-      <div style="padding:0 22px 24px"><button class="pcbtn" onclick="proceedPay()">Proceed →</button></div>
-    </div>
-
-    <div id="stepQR" style="display:none">
-      <div class="shdr"><div class="stitle">Scan & Pay</div><button class="xbtn" onclick="closeModal()">✕</button></div>
-      <div class="qrsec">
-        <div class="qrbox"><div class="qrcw" id="qrWrap"></div><div class="qru" id="qrLabel">UPI Payment</div><div class="qra" id="qrAmt">₹0</div></div>
-        <div class="app-buttons" id="qrAppButtons"></div>
-        <div class="urow"><div class="uid" id="upiIdTxt">azhagu@okhdfcbank</div><button class="cpbtn" onclick="copyUPI()">Copy ID</button></div>
-        <button class="pcbtn paid" style="background:#2a7f49; margin-top:12px;" onclick="confirmPay()">✅ I have paid</button>
-        <button class="backlink" style="margin-top:12px; background:none; border:none; color:#9b7b5c;" onclick="showStep('stepMethod')">← Back</button>
+      <div style="padding: 0 20px 24px;">
+        <button class="confirm-order-btn" onclick="goToPayment()" style="background: var(--azh-primary);">Proceed to Pay →</button>
       </div>
     </div>
 
-    <div id="stepCash" style="display:none">
-      <div class="shdr"><div class="stitle">💵 Pay at Counter</div><button class="xbtn" onclick="closeModal()">✕</button></div>
-      <div class="cashsec"><div class="camt" id="cashAmt">₹0</div><div class="cnote">Please pay at the front desk.<br>We'll prepare your order immediately.</div>
-      <button class="pcbtn" style="margin:18px 0 8px;" onclick="confirmPay()">✅ Confirm Order</button>
-      <button class="backlink" onclick="showStep('stepMethod')">← Change method</button></div>
+    <!-- Step 2: UPI Payment -->
+    <div id="stepUPI" style="display:none">
+      <div class="section-header">
+        <div class="section-title">💸 Complete Payment</div>
+        <button class="close-btn" onclick="closePaymentModal()">✕</button>
+      </div>
+      <div class="upi-section">
+        <div class="qr-container">
+          <div class="qr-wrapper" id="qrWrapper"></div>
+          <div class="upi-amount" id="upiAmount">₹0</div>
+          <div style="font-size: 11px; color: #666; margin-top: 5px;">Scan with any UPI app</div>
+        </div>
+        
+        <div class="upi-id-row">
+          <div class="upi-id">azhagumani20-3@okicici</div>
+          <button class="copy-btn" onclick="copyUPI()">Copy ID</button>
+        </div>
+        
+        <div class="payment-confirm-box">
+          <div class="confirm-check">
+            <input type="checkbox" id="paymentConfirmCheck" onchange="togglePaymentConfirm()">
+            <label>✅ I have completed the payment</label>
+          </div>
+          <input type="text" id="utrNumber" class="utr-field" placeholder="Enter UTR/Reference (optional)">
+          <div class="warning-text">⚠️ Please complete payment in your UPI app before confirming</div>
+        </div>
+        
+        <button class="confirm-order-btn" id="confirmPaymentBtn" style="background: #2a7f49;" disabled onclick="confirmOrder()">✅ Confirm & Place Order</button>
+        <button class="back-link" onclick="showStep('stepMethod')">← Back to payment options</button>
+      </div>
     </div>
 
+    <!-- Step 2: Cash Payment -->
+    <div id="stepCash" style="display:none">
+      <div class="section-header">
+        <div class="section-title">💵 Pay at Counter</div>
+        <button class="close-btn" onclick="closePaymentModal()">✕</button>
+      </div>
+      <div class="upi-section">
+        <div class="qr-container">
+          <div style="font-size: 48px; text-align: center;">💵</div>
+          <div class="upi-amount" id="cashAmount">₹0</div>
+          <div style="font-size: 13px; margin-top: 8px;">Please pay at the front desk</div>
+        </div>
+        
+        <div class="payment-confirm-box">
+          <div class="confirm-check">
+            <input type="checkbox" id="cashConfirmCheck" onchange="toggleCashConfirm()">
+            <label>✅ I will pay cash at the counter</label>
+          </div>
+        </div>
+        
+        <button class="confirm-order-btn" id="cashConfirmBtn" style="background: #2a7f49;" disabled onclick="confirmOrderCash()">✅ Confirm Order</button>
+        <button class="back-link" onclick="showStep('stepMethod')">← Back</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Success -->
     <div id="stepSuccess" style="display:none">
-      <div class="sucsec"><div class="sucicon">✅</div><div class="suctitle" style="font-size:24px;font-weight:800;">Order Placed!</div>
-      <div class="sucsub">Your delicious food is being prepared.<br>Azhagu Hotel thanks you.</div>
-      <div class="oidbadge" id="sucOrderId">ORD-001</div>
-      <div>Payment: <span id="sucPayMethod">UPI</span></div>
-      <button class="donebtn" style="background:#b7410e; color:white; margin-top:20px; padding:12px 28px; border:none; border-radius:40px; cursor:pointer;" onclick="closeModal()">🍽️ Order More</button></div>
+      <div class="success-section">
+        <div class="success-icon">✅</div>
+        <div class="section-title" style="font-size: 22px;">Order Placed!</div>
+        <p>Your delicious food is being prepared.<br>Azhagu Hotel thanks you.</p>
+        <div class="order-badge" id="successOrderId">ORD-001</div>
+        <button class="confirm-order-btn download-btn" onclick="downloadBill()">📄 Download Bill</button>
+        <button class="confirm-order-btn order-more-btn" onclick="closeModalAndReset()" style="background: var(--azh-primary);">🍽️ Order More</button>
+      </div>
     </div>
   </div>
 </div>
@@ -635,294 +955,430 @@ body {
 <div class="toast" id="toast"></div>
 
 <script>
-// ==================== MENU DATA ====================
+// ==================== CONFIGURATION ====================
+const UPI_ID = 'azhagumani20-3@okicici';
+const UPI_NAME = 'Azhagu Hotel';
+const GSTIN = '33AAACA1234E1ZQ';
+
+// GST Settings
+let gstRate = parseFloat(localStorage.getItem('azhagu_gst_rate') || '5');
+let gstEnabled = localStorage.getItem('azhagu_gst_enabled') !== 'false';
+
+// Customer Name
+let customerName = localStorage.getItem('azhagu_customer_name') || '';
+
+// Menu Data
 const menuData = [
-  {id:1, name:'Ghee Roast Dosa', price:55, category:'tiffin', note:'crispy + chutney', emoji:'🥞', img:null},
-  {id:2, name:'Mini Idly', price:25, category:'tiffin', note:'10 pcs', emoji:'🍚', img:null},
-  {id:3, name:'Kuzhi Paniyaram', price:40, category:'tiffin', note:'soft & spicy', emoji:'🍘', img:null},
-  {id:4, name:'Podi Pongal', price:50, category:'tiffin', note:'with ghee', emoji:'🍲', img:null},
-  {id:5, name:'Filter Coffee', price:22, category:'drinks', note:'aromatic', emoji:'☕', img:null},
-  {id:6, name:'Badam Milk', price:35, category:'drinks', note:'rich', emoji:'🥛', img:null},
-  {id:7, name:'Elaneer Juice', price:45, category:'drinks', note:'tender coconut', emoji:'🥥', img:null}
+  {id:1, name:'Ghee Roast Dosa', price:65, category:'tiffin', note:'crispy + chutney', emoji:'🥞', img:null},
+  {id:2, name:'Mini Idly', price:30, category:'tiffin', note:'10 pcs', emoji:'🍚', img:null},
+  {id:3, name:'Kuzhi Paniyaram', price:45, category:'tiffin', note:'soft & spicy', emoji:'🍘', img:null},
+  {id:4, name:'Podi Pongal', price:55, category:'tiffin', note:'with ghee', emoji:'🍲', img:null},
+  {id:5, name:'Masala Dosa', price:70, category:'tiffin', note:'with potato filling', emoji:'🥞', img:null},
+  {id:6, name:'Rava Idly', price:35, category:'tiffin', note:'soft & healthy', emoji:'🍚', img:null},
+  {id:7, name:'Vada', price:15, category:'tiffin', note:'crispy donut', emoji:'🍩', img:null},
+  {id:8, name:'Filter Coffee', price:22, category:'drinks', note:'aromatic', emoji:'☕', img:null},
+  {id:9, name:'Badam Milk', price:35, category:'drinks', note:'rich & creamy', emoji:'🥛', img:null},
+  {id:10, name:'Elaneer Juice', price:45, category:'drinks', note:'tender coconut', emoji:'🥥', img:null},
+  {id:11, name:'Butter Milk', price:20, category:'drinks', note:'spiced', emoji:'🥛', img:null},
+  {id:12, name:'Lemon Rice', price:50, category:'rice', note:'tangy & tasty', emoji:'🍚', img:null},
+  {id:13, name:'Curd Rice', price:45, category:'rice', note:'comfort food', emoji:'🍚', img:null},
+  {id:14, name:'Sambar Rice', price:55, category:'rice', note:'with veggies', emoji:'🍲', img:null}
 ];
 
-// ==================== GLOBAL STATE ====================
+// Global State
 let cart = {};
 let orders = JSON.parse(localStorage.getItem('azhagu_orders') || '[]');
-let orderCounter = orders.length + 1;
+let customerOrders = JSON.parse(localStorage.getItem('azhagu_customer_orders') || '[]');
+let orderCounter = Math.max(orders.length, customerOrders.length, 1);
 let curFilter = 'all';
-let selPayMethod = 'upi';
-let timerInterval = null;
+let searchQuery = '';
+let selectedPaymentMethod = 'upi';
+let currentBillOrder = null;
 
-const UPI_ID = 'azhagu@okhdfcbank';
-const UPI_NAME = 'Azhagu Hotel';
-
-// ==================== SAVE ORDERS TO LOCALSTORAGE ====================
+// Save functions
 function saveOrders() {
   localStorage.setItem('azhagu_orders', JSON.stringify(orders));
+  localStorage.setItem('azhagu_customer_orders', JSON.stringify(customerOrders));
 }
 
-// ==================== MENU RENDER ====================
+// GST Calculation
+function calculateGST(subtotal) {
+  if (!gstEnabled) return { gstAmount: 0, total: subtotal, cgst: 0, sgst: 0 };
+  const gstAmount = (subtotal * gstRate) / 100;
+  return { gstAmount, total: subtotal + gstAmount, cgst: gstAmount/2, sgst: gstAmount/2 };
+}
+
+function getCartTotal() {
+  let subtotal = 0;
+  for (const [id, qty] of Object.entries(cart)) {
+    const item = menuData.find(i => i.id == parseInt(id));
+    if (item) subtotal += item.price * qty;
+  }
+  return { subtotal, ...calculateGST(subtotal) };
+}
+
+// Render Menu with Search & Filter
 function renderMenu() {
   const grid = document.getElementById('menuGrid');
-  const filtered = curFilter === 'all' ? menuData : menuData.filter(i => i.category === curFilter);
+  let filtered = menuData;
+  
+  if (curFilter !== 'all') {
+    filtered = filtered.filter(i => i.category === curFilter);
+  }
+  
+  if (searchQuery) {
+    filtered = filtered.filter(i => 
+      i.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+  
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div style="text-align:center; padding:40px; color:var(--azh-muted);">No items found 🔍</div>';
+    return;
+  }
+  
   grid.innerHTML = filtered.map(item => {
     const qty = cart[item.id] || 0;
     const imgHtml = item.img ? `<img src="${item.img}" alt="${item.name}">` : `<div class="me">${item.emoji}</div>`;
-    return `<div class="mc"><div class="mi">${imgHtml}</div><div class="mb"><div class="mn">${item.name}</div>${item.note ? `<div class="mnote">${item.note}</div>` : ''}<div class="mrow"><div class="mprice">₹${item.price}</div><div class="qw">${qty > 0 ? `<button class="qb minus" onclick="updCart(${item.id},-1)">−</button><span class="qn">${qty}</span>` : ''}<button class="qb plus" onclick="updCart(${item.id},1)">+</button></div></div></div></div>`;
+    return `<div class="mc">
+      <div class="mi">${imgHtml}</div>
+      <div class="mb">
+        <div class="mn">${item.name}</div>
+        ${item.note ? `<div class="mnote">${item.note}</div>` : ''}
+        <div class="mrow">
+          <div class="mprice">₹${item.price}</div>
+          <div class="qw">
+            ${qty > 0 ? `<button class="qb minus" onclick="event.stopPropagation(); updCart(${item.id},-1)">−</button><span class="qn">${qty}</span>` : ''}
+            <button class="qb plus" onclick="event.stopPropagation(); updCart(${item.id},1)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
   }).join('');
 }
 
 function updCart(id, d) {
-  cart[id] = Math.max(0, (cart[id] || 0) + d);
-  if (!cart[id]) delete cart[id];
+  const newQty = Math.max(0, (cart[id] || 0) + d);
+  if (newQty === 0) delete cart[id];
+  else cart[id] = newQty;
   renderMenu();
   updateCartBar();
 }
 
 function updateCartBar() {
-  let total = 0, count = 0;
-  for (const [id, qty] of Object.entries(cart)) {
-    const item = menuData.find(i => i.id == id);
-    total += item.price * qty;
-    count += qty;
-  }
-  document.getElementById('cartTotal').innerHTML = '₹' + total;
+  const { total } = getCartTotal();
+  let count = Object.values(cart).reduce((a,b) => a+b, 0);
+  document.getElementById('cartTotal').innerHTML = '₹' + total.toFixed(2);
   document.getElementById('cartLbl').innerText = count + (count === 1 ? ' item' : ' items');
   document.getElementById('placeBtn').disabled = count === 0;
 }
 
-function getTotal() {
-  let t = 0;
-  for (const [id, qty] of Object.entries(cart)) {
-    const item = menuData.find(i => i.id == id);
-    t += item.price * qty;
+// Customer Name
+function openNameModal() {
+  document.getElementById('nameModal').classList.add('open');
+  document.getElementById('customerNameInput').value = customerName;
+}
+
+function saveCustomerName() {
+  const name = document.getElementById('customerNameInput').value.trim();
+  if (name === '') {
+    showToast('⚠️ Please enter your name', true);
+    return;
   }
-  return t;
+  customerName = name;
+  localStorage.setItem('azhagu_customer_name', customerName);
+  document.getElementById('welcomeNameBtn').innerHTML = `👤 ${customerName.substring(0, 15)}`;
+  document.getElementById('nameModal').classList.remove('open');
+  showToast(`Welcome ${customerName}! 🎉`);
 }
 
-// ==================== DIRECT APP OPENING (INTENTS) ====================
-function openUPIApp(appName, amount) {
-  const packageName = {
-    gpay: 'com.google.android.apps.nbu.paisa.user',
-    phonepe: 'com.phonepe.app',
-    paytm: 'net.one97.paytm',
-    amazonpay: 'in.amazon.mShop.android.shopping'
-  };
+// Proceed to Payment
+function proceedToPayment() {
+  if (Object.keys(cart).length === 0) return;
   
-  const upiIntent = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amount}&cu=INR&tn=AzhaguHotelOrder`;
-  
-  if (appName === 'gpay') {
-    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.gpay};end`;
-    setTimeout(() => { window.location.href = upiIntent; }, 500);
-  } else if (appName === 'phonepe') {
-    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.phonepe};end`;
-    setTimeout(() => { window.location.href = upiIntent; }, 500);
-  } else if (appName === 'paytm') {
-    window.location.href = `intent://pay?pa=${UPI_ID}&pn=${UPI_NAME}&am=${amount}&cu=INR#Intent;scheme=upi;package=${packageName.paytm};end`;
-    setTimeout(() => { window.location.href = upiIntent; }, 500);
-  } else {
-    window.location.href = upiIntent;
+  if (!customerName) {
+    openNameModal();
+    return;
   }
-}
-
-function renderDirectAppButtons(containerId, amount) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
   
-  container.innerHTML = `
-    <button class="app-btn gpay" onclick="openUPIApp('gpay', ${amount})">
-      <span>🅖</span> Google Pay
-    </button>
-    <button class="app-btn phonepe" onclick="openUPIApp('phonepe', ${amount})">
-      <span>💜</span> PhonePe
-    </button>
-    <button class="app-btn paytm" onclick="openUPIApp('paytm', ${amount})">
-      <span>🎯</span> Paytm
-    </button>
-  `;
-}
-
-// ==================== PAYMENT MODAL ====================
-function openPayModal() {
-  if (!Object.keys(cart).length) return;
+  const { subtotal, total, cgst, sgst } = getCartTotal();
   
-  const total = getTotal();
-  selPayMethod = 'upi';
-  
-  document.querySelectorAll('.popt').forEach(p => p.classList.remove('selected'));
-  document.getElementById('opt-upi').classList.add('selected');
-  
-  const sumDiv = document.getElementById('summaryLines');
-  sumDiv.innerHTML = Object.entries(cart).map(([id, qty]) => {
-    const it = menuData.find(i => i.id == id);
-    return `<div class="sline"><span>${it.name} × ${qty}</span><span>₹${it.price * qty}</span></div>`;
+  // Summary
+  document.getElementById('summaryLines').innerHTML = Object.entries(cart).map(([id, qty]) => {
+    const it = menuData.find(i => i.id == parseInt(id));
+    return `<div class="summary-item"><span>${it.name} × ${qty}</span><span>₹${(it.price * qty).toFixed(2)}</span></div>`;
   }).join('');
-  document.getElementById('summaryTotal').innerHTML = '₹' + total;
   
-  // Render direct app buttons in stepMethod
-  renderDirectAppButtons('directAppButtons', total);
+  document.getElementById('customerInfo').innerHTML = `👤 Customer: <span>${customerName}</span>`;
+  document.getElementById('subtotal').innerHTML = '₹' + subtotal.toFixed(2);
   
+  const gstDiv = document.getElementById('gstBreakdown');
+  if (gstEnabled && gstRate > 0) {
+    gstDiv.innerHTML = `<div class="summary-item"><span>CGST (${gstRate/2}%)</span><span>₹${cgst.toFixed(2)}</span></div>
+                        <div class="summary-item"><span>SGST (${gstRate/2}%)</span><span>₹${sgst.toFixed(2)}</span></div>`;
+  } else {
+    gstDiv.innerHTML = '';
+  }
+  document.getElementById('totalAmount').innerHTML = '₹' + total.toFixed(2);
+  
+  document.getElementById('paymentModal').classList.add('open');
   showStep('stepMethod');
-  document.getElementById('payModal').classList.add('open');
 }
 
-function closeModal() {
-  document.getElementById('payModal').classList.remove('open');
-  if (timerInterval) clearInterval(timerInterval);
+function selectPaymentMethod(method) {
+  selectedPaymentMethod = method;
+  document.querySelectorAll('.method-btn').forEach(btn => btn.classList.remove('selected'));
+  document.querySelector(`.method-btn[data-method="${method}"]`).classList.add('selected');
 }
 
-function selPay(m) {
-  selPayMethod = m;
-  document.querySelectorAll('.popt').forEach(p => p.classList.remove('selected'));
-  document.getElementById(`opt-${m}`).classList.add('selected');
-}
-
-function proceedPay() {
-  const total = getTotal();
-  if (selPayMethod === 'cash') {
-    document.getElementById('cashAmt').innerHTML = '₹' + total;
+function goToPayment() {
+  const { total } = getCartTotal();
+  if (selectedPaymentMethod === 'cash') {
+    document.getElementById('cashAmount').innerHTML = '₹' + total.toFixed(2);
     showStep('stepCash');
   } else {
-    document.getElementById('qrLabel').innerHTML = 'UPI QR Code';
-    document.getElementById('qrAmt').innerHTML = '₹' + total;
-    document.getElementById('upiIdTxt').innerHTML = UPI_ID;
+    document.getElementById('upiAmount').innerHTML = '₹' + total.toFixed(2);
     generateQR(total);
-    renderDirectAppButtons('qrAppButtons', total);
-    startTimer(600);
-    showStep('stepQR');
+    showStep('stepUPI');
   }
 }
 
-function generateQR(amt) {
-  const wrap = document.getElementById('qrWrap');
-  wrap.innerHTML = '';
-  const url = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amt}&cu=INR`;
+function generateQR(amount) {
+  const wrapper = document.getElementById('qrWrapper');
+  wrapper.innerHTML = '';
+  const url = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amount}&cu=INR&tn=Azhagu%20Order`;
   try {
-    new QRCode(wrap, { text: url, width: 190, height: 190, colorDark: "#b7410e", colorLight: "#ffffff" });
+    new QRCode(wrapper, { text: url, width: 170, height: 170, colorDark: "#b7410e", colorLight: "#ffffff" });
   } catch(e) {
-    wrap.innerHTML = `<div style="width:180px;height:180px;background:#f5e6d8;border-radius:20px;display:flex;align-items:center;justify-content:center;">🔽 Scan QR</div>`;
+    wrapper.innerHTML = `<div style="width:170px;height:170px;background:#f5e6d8;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center;">Scan QR<br>${UPI_ID}</div>`;
   }
-}
-
-function startTimer(sec) {
-  if (timerInterval) clearInterval(timerInterval);
-  const el = document.getElementById('timerVal');
-  if (!el) return;
-  const fmt = (s) => `${Math.floor(s/60)}`.padStart(2,'0')+':'+`${s%60}`.padStart(2,'0');
-  el.innerText = fmt(sec);
-  timerInterval = setInterval(() => {
-    sec--;
-    if (sec <= 0) {
-      clearInterval(timerInterval);
-      if(document.getElementById('timerVal')) document.getElementById('timerVal').innerText = "00:00";
-    } else {
-      if(document.getElementById('timerVal')) document.getElementById('timerVal').innerText = fmt(sec);
-    }
-  }, 1000);
 }
 
 function copyUPI() {
   navigator.clipboard.writeText(UPI_ID);
-  showToast('✅ UPI ID copied!');
+  showToast('✅ UPI ID copied! Pay to: ' + UPI_ID);
 }
 
-function confirmPay() {
-  if (timerInterval) clearInterval(timerInterval);
-  const payLabel = selPayMethod === 'cash' ? 'Cash' : 'UPI';
-  const orderId = finalizeOrder(payLabel);
-  document.getElementById('sucOrderId').innerText = orderId;
-  document.getElementById('sucPayMethod').innerText = payLabel;
-  showStep('stepSuccess');
+function togglePaymentConfirm() {
+  const btn = document.getElementById('confirmPaymentBtn');
+  const chk = document.getElementById('paymentConfirmCheck');
+  btn.disabled = !chk.checked;
 }
 
-function finalizeOrder(payMethod) {
-  let total = 0, itemsList = [];
-  for (const [id, qty] of Object.entries(cart)) {
-    const item = menuData.find(i => i.id == id);
-    itemsList.push({ name: item.name, qty, price: item.price * qty });
-    total += item.price * qty;
+function toggleCashConfirm() {
+  const btn = document.getElementById('cashConfirmBtn');
+  const chk = document.getElementById('cashConfirmCheck');
+  btn.disabled = !chk.checked;
+}
+
+function confirmOrder() {
+  const chk = document.getElementById('paymentConfirmCheck');
+  if (!chk.checked) {
+    showToast('⚠️ Please confirm payment before proceeding', true);
+    return;
   }
-  const newOrder = {
-    id: `ORD-${String(orderCounter++).padStart(3,'0')}`,
+  createAndConfirmOrder('UPI');
+}
+
+function confirmOrderCash() {
+  createAndConfirmOrder('Cash');
+}
+
+function createAndConfirmOrder(payMethod) {
+  let subtotal = 0, itemsList = [];
+  for (const [id, qty] of Object.entries(cart)) {
+    const item = menuData.find(i => i.id == parseInt(id));
+    itemsList.push({ name: item.name, qty, price: item.price, total: item.price * qty });
+    subtotal += item.price * qty;
+  }
+  
+  const { gstAmount, total, cgst, sgst } = calculateGST(subtotal);
+  const orderId = `ORD-${String(orderCounter++).padStart(3,'0')}`;
+  const now = new Date();
+  
+  const order = {
+    id: orderId,
+    customerName: customerName,
     lines: itemsList,
-    total,
+    subtotal: subtotal,
+    gstRate: gstEnabled ? gstRate : 0,
+    gstAmount: gstAmount,
+    cgst: cgst,
+    sgst: sgst,
+    total: total,
     status: 'pending',
-    payMethod,
-    time: new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
-    timestamp: Date.now()
+    paidStatus: 'Paid',
+    payMethod: payMethod,
+    time: now.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }),
+    date: now.toLocaleDateString('en-IN'),
+    timestamp: Date.now(),
+    gstin: GSTIN,
+    hotelName: 'Azhagu Hotel',
+    upiId: UPI_ID
   };
-  orders.unshift(newOrder);
+  
+  orders.unshift(order);
+  customerOrders.unshift(order);
   saveOrders();
+  
+  currentBillOrder = order;
+  document.getElementById('successOrderId').innerText = order.id;
+  
   cart = {};
   renderMenu();
   updateCartBar();
-  showToast(`🎉 Order ${newOrder.id} placed!`);
-  return newOrder.id;
+  showStep('stepSuccess');
+  showToast(`✅ Order ${order.id} placed successfully!`);
 }
 
-function showStep(id) {
-  ['stepMethod','stepQR','stepCash','stepSuccess'].forEach(s => {
-    const el = document.getElementById(s);
-    if (el) el.style.display = s === id ? 'block' : 'none';
-  });
+function downloadBill() {
+  if (!currentBillOrder) return;
+  const html = generateBillHTML(currentBillOrder);
+  const win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
+  win.print();
 }
 
-// ==================== IMAGE TOOL ====================
+function generateBillHTML(order) {
+  return `<!DOCTYPE html>
+  <html><head><meta charset="UTF-8"><title>Bill ${order.id}</title>
+  <style>
+    body { font-family: monospace; padding: 20px; max-width: 400px; margin: 0 auto; }
+    .header { text-align: center; margin-bottom: 20px; border-bottom: 1px dashed #000; padding-bottom: 10px; }
+    .hotel-name { font-size: 22px; font-weight: bold; }
+    .items { width: 100%; margin: 15px 0; border-collapse: collapse; }
+    .items th, .items td { border-bottom: 1px dotted #ccc; padding: 6px 0; text-align: left; }
+    .total-row { margin-top: 15px; border-top: 1px solid #000; padding-top: 10px; }
+    .footer { text-align: center; margin-top: 30px; font-size: 11px; }
+    .text-right { text-align: right; }
+  </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="hotel-name">🍛 ${order.hotelName}</div>
+      <div>GSTIN: ${order.gstin}</div>
+      <div>UPI: ${order.upiId}</div>
+      <div><strong>TAX INVOICE</strong></div>
+    </div>
+    <div><strong>Bill No:</strong> ${order.id}</div>
+    <div><strong>Customer:</strong> ${order.customerName}</div>
+    <div><strong>Date:</strong> ${order.date} | ${order.time}</div>
+    <div><strong>Payment:</strong> ${order.payMethod} | Paid</div>
+    <table class="items">
+      <tr><th>Item</th><th>Qty</th><th class="text-right">Amount</th></tr>
+      ${order.lines.map(l => `<tr><td>${l.name}</td><td>${l.qty}</td><td class="text-right">₹${l.total.toFixed(2)}</td>`).join('')}
+    </table>
+    <div><strong>Subtotal:</strong> ₹${order.subtotal.toFixed(2)}</div>
+    ${order.gstRate > 0 ? `<div>CGST (${order.gstRate/2}%): ₹${order.cgst.toFixed(2)}</div>
+    <div>SGST (${order.gstRate/2}%): ₹${order.sgst.toFixed(2)}</div>` : ''}
+    <div class="total-row"><strong>Total: ₹${order.total.toFixed(2)}</strong></div>
+    <div class="footer">✨ Thank you! Visit Again ✨</div>
+  </body>
+  </html>`;
+}
+
+function openOrderHistory() {
+  const container = document.getElementById('orderHistoryList');
+  const userOrders = customerOrders.filter(o => o.customerName === customerName);
+  
+  if (userOrders.length === 0) {
+    container.innerHTML = '<div class="empty-history" style="text-align:center; padding:50px;">📭 No orders yet</div>';
+  } else {
+    container.innerHTML = userOrders.map(order => `
+      <div class="history-item" onclick="viewBill('${order.id}')">
+        <div class="history-header"><span class="history-id">${order.id}</span><span class="history-date">${order.date} ${order.time}</span></div>
+        <div class="history-customer">👤 ${order.customerName}</div>
+        <div class="history-items">${order.lines.map(l => `${l.name}×${l.qty}`).join(', ')}</div>
+        <div><span class="history-total">₹${order.total.toFixed(2)}</span> | ${order.payMethod}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function viewBill(orderId) {
+  const order = customerOrders.find(o => o.id === orderId);
+  if (order) {
+    const win = window.open('', '_blank');
+    win.document.write(generateBillHTML(order));
+    win.document.close();
+    win.print();
+  }
+}
+
 function renderImgTool() {
   const body = document.getElementById('imgBody');
-  if (!body) return;
   body.innerHTML = menuData.map(item => `
-    <div class="ie" style="background:white; border-radius:28px; overflow:hidden; border:1px solid #f0e2cf;">
-      <div class="iehead" style="background:#fff4ea; padding:14px 20px; display:flex; justify-content:space-between;">
-        <span style="font-weight:700;">${item.emoji} ${item.name}</span>
-        <span style="color:#b7410e; font-weight:700;">₹${item.price}</span>
-      </div>
-      <div class="iebody" style="display:flex; gap:16px; padding:18px; flex-wrap:wrap;">
-        <div class="iprev" id="prev-${item.id}" onclick="document.getElementById('fi-${item.id}').click()" style="width:100px; height:100px; border-radius:20px; background:#fcf2e6; border:2px dashed #e2cfb5; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:pointer;">
-          ${item.img ? `<img src="${item.img}" style="width:100%; height:100%; object-fit:cover;">` : `<div style="font-size:30px;">📷</div>`}
+    <div class="img-tool-item">
+      <div class="img-tool-header"><span>${item.emoji} ${item.name}</span><span>₹${item.price}</span></div>
+      <div class="img-tool-body">
+        <div class="img-preview" onclick="document.getElementById('fi-${item.id}').click()">
+          ${item.img ? `<img src="${item.img}" style="width:100%;height:100%;object-fit:cover;">` : '📷'}
         </div>
         <input type="file" accept="image/*" style="display:none" id="fi-${item.id}" onchange="handleImgUp(event,${item.id})">
-        <div>
-          <button class="upbtn" onclick="document.getElementById('fi-${item.id}').click()" style="background:#b7410e; color:white; border:none; padding:8px 16px; border-radius:30px; margin-right:8px; cursor:pointer;">Upload</button>
-          <button class="rmbtn" onclick="removeImg(${item.id})" style="background:#f2e0d0; border:none; padding:8px 16px; border-radius:30px; cursor:pointer;">Remove</button>
-          <div style="font-size:11px; margin-top:6px;">${item.img ? '✓ image set' : 'no image'}</div>
-        </div>
+        <div><button class="upload-btn" style="background:#b7410e; color:white; border:none; padding:6px 14px; border-radius:30px; margin-right:8px; cursor:pointer;" onclick="document.getElementById('fi-${item.id}').click()">Upload</button>
+        <button class="remove-btn" style="background:#f2e0d0; border:none; padding:6px 14px; border-radius:30px; cursor:pointer;" onclick="removeImg(${item.id})">Remove</button>
+        <div style="font-size:10px; margin-top:5px;">${item.img ? '✓ Set' : 'No image'}</div></div>
       </div>
     </div>
   `).join('');
 }
 
-window.handleImgUp = (event, id) => {
-  const file = event.target.files[0];
+window.handleImgUp = (e, id) => {
+  const file = e.target.files[0];
   if (!file) return;
   const reader = new FileReader();
-  reader.onload = e => {
-    const item = menuData.find(i => i.id === id);
-    item.img = e.target.result;
+  reader.onload = ev => {
+    menuData.find(i => i.id == id).img = ev.target.result;
     renderImgTool();
     renderMenu();
-    showToast(`📸 ${item.name} updated!`);
+    showToast(`📸 ${menuData.find(i => i.id == id).name} updated`);
   };
   reader.readAsDataURL(file);
 };
 
 window.removeImg = (id) => {
-  const item = menuData.find(i => i.id === id);
-  item.img = null;
+  menuData.find(i => i.id == id).img = null;
   renderImgTool();
   renderMenu();
-  showToast(`🗑️ ${item.name} image removed`);
+  showToast('Image removed');
 };
 
-function showToast(msg) {
+function showToast(msg, isError = false) {
   const t = document.getElementById('toast');
   t.innerText = msg;
+  t.style.background = isError ? '#c0392b' : '#2c1a0f';
   t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
+  setTimeout(() => t.classList.remove('show'), 3000);
 }
 
-// ==================== NAVIGATION ====================
+function closePaymentModal() {
+  document.getElementById('paymentModal').classList.remove('open');
+  document.getElementById('paymentConfirmCheck').checked = false;
+  document.getElementById('cashConfirmCheck').checked = false;
+  if (document.getElementById('confirmPaymentBtn')) document.getElementById('confirmPaymentBtn').disabled = true;
+  if (document.getElementById('cashConfirmBtn')) document.getElementById('cashConfirmBtn').disabled = true;
+}
+
+function closeModalAndReset() {
+  closePaymentModal();
+  location.reload();
+}
+
+function showStep(step) {
+  document.getElementById('stepMethod').style.display = step === 'stepMethod' ? 'block' : 'none';
+  document.getElementById('stepUPI').style.display = step === 'stepUPI' ? 'block' : 'none';
+  document.getElementById('stepCash').style.display = step === 'stepCash' ? 'block' : 'none';
+  document.getElementById('stepSuccess').style.display = step === 'stepSuccess' ? 'block' : 'none';
+}
+
+// Search
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderMenu();
+});
+
+// Navigation
 document.querySelectorAll('.nt').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.nt').forEach(t => t.classList.remove('active'));
@@ -930,6 +1386,7 @@ document.querySelectorAll('.nt').forEach(tab => {
     tab.classList.add('active');
     document.getElementById(`view-${tab.dataset.view}`).classList.add('active');
     if (tab.dataset.view === 'imgtool') renderImgTool();
+    if (tab.dataset.view === 'orders') openOrderHistory();
   });
 });
 
@@ -942,7 +1399,13 @@ document.querySelectorAll('.fpill').forEach(p => {
   });
 });
 
-// ==================== INIT ====================
+// Initialize
+if (customerName) {
+  document.getElementById('welcomeNameBtn').innerHTML = `👤 ${customerName.substring(0, 15)}`;
+} else {
+  setTimeout(() => openNameModal(), 500);
+}
+
 renderMenu();
 renderImgTool();
 updateCartBar();
